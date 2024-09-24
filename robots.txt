@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://abbasdp.github.io/personallwebsite/sitemap.xml
+Sitemap: https://abbasdp.ir/sitemap.xml
