@@ -1,0 +1,97 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "abbasdp1",
+    "description": "",
+    "home_page_url": "https://abbasdp.github.io/personallwebsite",
+    "feed_url": "https://abbasdp.github.io/personallwebsite/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "abbas davarpanah"
+    },
+    "items": [
+        {
+            "id": "https://abbasdp.github.io/personallwebsite/pst-shmrh-6.html",
+            "url": "https://abbasdp.github.io/personallwebsite/pst-shmrh-6.html",
+            "title": "پست شماره ۶ ",
+            "content_html": "\n<p>پست پست</p>",
+            "image": "https://abbasdp.github.io/personallwebsite/media/posts/8/CS50xShiraz-logo-red.png",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-24T17:09:27+03:30",
+            "date_modified": "2024-09-24T22:10:15+03:30"
+        },
+        {
+            "id": "https://abbasdp.github.io/personallwebsite/pst-shmrh-5.html",
+            "url": "https://abbasdp.github.io/personallwebsite/pst-shmrh-5.html",
+            "title": "پست شماره ۵",
+            "summary": "این پست شماره ۵ هست",
+            "content_html": "<p>این پست شماره ۵ هست</p>",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-24T17:09:15+03:30",
+            "date_modified": "2024-09-24T17:09:15+03:30"
+        },
+        {
+            "id": "https://abbasdp.github.io/personallwebsite/pst-shmrh-4.html",
+            "url": "https://abbasdp.github.io/personallwebsite/pst-shmrh-4.html",
+            "title": "پست شماره ۴",
+            "summary": "این پست شماره ۴ هست",
+            "content_html": "<p>این پست شماره ۴ هست</p>",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-24T17:09:02+03:30",
+            "date_modified": "2024-09-24T17:09:02+03:30"
+        },
+        {
+            "id": "https://abbasdp.github.io/personallwebsite/pst-shmrh-3.html",
+            "url": "https://abbasdp.github.io/personallwebsite/pst-shmrh-3.html",
+            "title": "پست شماره ۳",
+            "summary": "این پست شماره سوم هست",
+            "content_html": "<p>این پست شماره سوم هست</p>",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-24T17:08:49+03:30",
+            "date_modified": "2024-09-24T17:08:49+03:30"
+        },
+        {
+            "id": "https://abbasdp.github.io/personallwebsite/pst-shmrh-2.html",
+            "url": "https://abbasdp.github.io/personallwebsite/pst-shmrh-2.html",
+            "title": "پست شماره ۲",
+            "summary": "<p>سلام دوباره به همه</p>\n<p>عشق فقط یک کلام</p>\n",
+            "content_html": "<p>سلام دوباره به همه</p>\n<p>عشق فقط یک کلام</p>\n\n<p>دنیا جای خوبی</p>",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-24T17:02:00+03:30",
+            "date_modified": "2024-09-24T17:02:00+03:30"
+        },
+        {
+            "id": "https://abbasdp.github.io/personallwebsite/slm-bh-jhn.html",
+            "url": "https://abbasdp.github.io/personallwebsite/slm-bh-jhn.html",
+            "title": "سلام به جهان",
+            "summary": "این تست اول من هست و میخوام آمار کامل تری بگیرم جریان اینه که ما میخواستیم با هم بریم جلو دریغا که گرسنه ترینی توی غنی ترین خاک که دنیا مدرونو ما توی عمیق ترین خواب بیا برگردیم به قبل زمونه همه چت غمن بگو&hellip;",
+            "content_html": "<p>این تست اول من هست </p>\n<p>و میخوام آمار کامل تری بگیرم</p>\n<figure class=\"post__image\"><img loading=\"lazy\"  src=\"https://abbasdp.github.io/personallwebsite/media/posts/1/2024-04-30-18.13.43.jpg\" alt=\"\" width=\"828\" height=\"513\" sizes=\"(max-width: 1920px) 100vw, 1920px\" srcset=\"https://abbasdp.github.io/personallwebsite/media/posts/1/responsive/2024-04-30-18.13.43-xs.jpg 640w ,https://abbasdp.github.io/personallwebsite/media/posts/1/responsive/2024-04-30-18.13.43-sm.jpg 768w ,https://abbasdp.github.io/personallwebsite/media/posts/1/responsive/2024-04-30-18.13.43-md.jpg 1024w ,https://abbasdp.github.io/personallwebsite/media/posts/1/responsive/2024-04-30-18.13.43-lg.jpg 1366w ,https://abbasdp.github.io/personallwebsite/media/posts/1/responsive/2024-04-30-18.13.43-xl.jpg 1600w ,https://abbasdp.github.io/personallwebsite/media/posts/1/responsive/2024-04-30-18.13.43-2xl.jpg 1920w\"></figure>\n<h4>مشکل با برنی</h4>\n<p>جریان اینه که ما میخواستیم با هم بریم جلو </p>\n<blockquote>\n<p>دریغا که گرسنه ترینی توی غنی ترین خاک که دنیا مدرونو ما توی عمیق ترین خواب </p>\n</blockquote>\n<p><span style=\"color: #e03e2d;\">بیا برگردیم به قبل زمونه همه چت غمن بگو یکی بیاد از درد بخونه </span></p>\n<p> </p>\n<p> </p>\n<p> </p>",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-09-24T17:00:57+03:30",
+            "date_modified": "2024-09-24T20:27:10+03:30"
+        }
+    ]
+}
