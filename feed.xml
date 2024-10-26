@@ -3,7 +3,7 @@
     <title>abbasdp</title>
     <link href="https://abbasdp.ir/feed.xml" rel="self" />
     <link href="https://abbasdp.ir" />
-    <updated>2024-09-29T01:57:14+03:30</updated>
+    <updated>2024-10-24T06:47:39+03:30</updated>
     <author>
         <name>عباس داورپناه</name>
     </author>
@@ -16,16 +16,21 @@
         </author>
         <link href="https://abbasdp.ir/about-me.html"/>
         <id>https://abbasdp.ir/about-me.html</id>
+        <media:content url="https://abbasdp.ir/media/posts/9/DSC07241-1-Medium.jpeg" medium="image" />
             <category term="عباس داوپناه"/>
+            <category term="fingercoder"/>
+            <category term="abbasdp"/>
 
         <updated>2024-09-28T01:11:21+03:30</updated>
             <summary>
                 <![CDATA[
+                        <img src="https://abbasdp.ir/media/posts/9/DSC07241-1-Medium.jpeg" alt="" />
                     توی پست میخوام بیشتر از خودم براتون بگم و یه معرفی بیشتری رو از خودم اینجا قرار بدم نمیخوام زندگی‌نامه براتون بنویسم اما بنظرم از دوران مدرسه مسیر مناسب‌تری برای شروع کردن باشه من جزو یکی از بی‌نظم ترین‌های مدرسه بودم و همیشه یه تنفر&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
+                    <p><img src="https://abbasdp.ir/media/posts/9/DSC07241-1-Medium.jpeg" class="type:primaryImage" alt="" /></p>
                 <p>توی پست میخوام بیشتر از <strong>خودم</strong> براتون بگم و یه معرفی بیشتری رو از خودم اینجا قرار بدم</p>
 <figure class="post__image"><img decoding="auto" loading="lazy"  src="https://abbasdp.ir/media/posts/9/photo_2024-09-25-00.58.09.jpeg" alt="" width="640" height="640" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://abbasdp.ir/media/posts/9/responsive/photo_2024-09-25-00.58.09-xs.jpeg 640w ,https://abbasdp.ir/media/posts/9/responsive/photo_2024-09-25-00.58.09-sm.jpeg 768w ,https://abbasdp.ir/media/posts/9/responsive/photo_2024-09-25-00.58.09-md.jpeg 1024w ,https://abbasdp.ir/media/posts/9/responsive/photo_2024-09-25-00.58.09-lg.jpeg 1366w ,https://abbasdp.ir/media/posts/9/responsive/photo_2024-09-25-00.58.09-xl.jpeg 1600w ,https://abbasdp.ir/media/posts/9/responsive/photo_2024-09-25-00.58.09-2xl.jpeg 1920w"></figure>
 <p>نمیخوام زندگی‌نامه براتون بنویسم اما بنظرم از دوران مدرسه <strong>مسیر مناسب‌تری برای شروع کردن باشه</strong> </p>
