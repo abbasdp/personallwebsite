@@ -5,6 +5,11 @@
         "md5": "a13befd535c6d4901709ceccc5195a40"
     },
     {
+        "path": "CNAME",
+        "type": "file",
+        "md5": "1ab53afa569f8e1b55b8b7a97cec5887"
+    },
+    {
         "path": "assets",
         "type": "directory",
         "md5": false
