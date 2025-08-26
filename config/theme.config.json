@@ -31,7 +31,7 @@
         "tags": true,
         "tagsAmount": "10",
         "tagsPostCount": true,
-        "newsletter": true,
+        "newsletter": false,
         "newsletterFormCode": "<form>...",
         "socialButtons": true,
         "socialFacebook": "",
@@ -75,11 +75,11 @@
         "formatDate": "MMM D, YYYY",
         "formatDateCustom": "HH:mm:ss YY/MM/DD",
         "lazyLoadEffect": "fadein",
-        "faviconUpload": "",
+        "faviconUpload": "media/website/abbasdp.png",
         "faviconExtension": "image/x-icon"
     },
     "postConfig": {
-        "displayPostLead": "عشق منی",
+        "displayPostLead": "",
         "displayMainTag": 1,
         "displayAuthor": 1,
         "displayDate": 1,
