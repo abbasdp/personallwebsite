@@ -1,0 +1,56 @@
+{
+	"partials": {
+
+		"menu": {			
+			"label": "Menu"
+		},
+
+		"sidebar": {
+			"featured": "Featured Posts",
+			"authors": "Authors",
+			"authorsPost": "Post: ",
+			"tags": "Recommended Topics",
+			"newsletter": "Subscribe to Mono",
+			"newsletterDesc": "Sign up to receive email updates and to hear what's going on with us!"
+		},
+
+		"pagination": {
+			"prev": "Previous",
+			"next": "Next"
+		},
+
+		"shareButtons": {
+			"shareWith": "Share with",
+			"shareWithFacebook": "Facebook",
+			"shareWithTwitter": "Twitter",
+			"shareWithPinterest": "Pinterest",
+			"shareWithMix": "Mix",
+			"shareWithLinkedIn": "LinkedIn",
+			"shareWithBuffer": "Buffer",
+			"shareWithWhatsApp": "WhatsApp",
+			"shareWithPocket": "Pocket"
+		} 
+	},	
+
+	"post": {
+		"publishedIn": "منتشر شده در تاریخ",
+		"relatedPosts": "پست‌های اخیر",
+		"lastUpdatedDate": "این مقاله آپدیت شده ددر تاریخ"
+   },
+
+	"page": {
+		"childPages": "Child pages"
+  },
+
+	"tags": {
+		"tagsPageTitle": "Tags",
+		"description": "Collection of all %s tags"
+	},
+	
+   "author": {
+	   "visitWebsite": "Visit my website"
+   },
+	"error": {
+		"goHome": "بازگشت به خانه"
+	}
+}
