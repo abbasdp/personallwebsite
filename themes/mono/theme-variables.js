@@ -8,6 +8,18 @@ var generateThemeVariables = function (params) {
       name: 'SystemUI',
       family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
     },
+    'vazirmatn': {
+      name: 'vazirmatn',
+      family: '\'vazirmatn\', sans-serif',
+      weight: '100 300 400 500 700 900', 
+      hasItalic: false 
+    },
+    'vazirmatn-black': {
+      name: 'vazirmatn-black',
+      family: '\'vazirmatn-black\', sans-serif',
+      weight: '100 300 400 500 700 900', 
+      hasItalic: false 
+    },
     aleo: {
       name: 'Aleo',
       family: '\'Aleo\', serif',

@@ -635,6 +635,16 @@
                     "group": "System"
                 },
                 {
+                    "label": "Vazirmatn",
+                    "value": "vazirmatn",
+                    "group": "Persian"
+                },
+                {
+                    "label": "Vazirmatn-Black",
+                    "value": "vazirmatn-black",
+                    "group": "Persian"
+                },
+                {
                     "label": "Aleo",
                     "value": "aleo",
                     "group": "Serif"
@@ -964,6 +974,16 @@
                     "group": "System"
                 },
                 {
+                    "label": "Vazirmatn",
+                    "value": "vazirmatn",
+                    "group": "Persian"
+                },
+                {
+                    "label": "Vazirmatn-Black",
+                    "value": "vazirmatn-black",
+                    "group": "Persian"
+                },
+                {
                     "label": "Aleo",
                     "value": "aleo",
                     "group": "Serif"
@@ -1291,6 +1311,16 @@
                     "label": "OS Default Font",
                     "value": "system-ui",
                     "group": "System"
+                },
+                {
+                    "label": "Vazirmatn",
+                    "value": "vazirmatn",
+                    "group": "Persian"
+                },
+                {
+                    "label": "Vazirmatn-Black",
+                    "value": "vazirmatn-black",
+                    "group": "Persian"
                 },
                 {
                     "label": "Aleo",

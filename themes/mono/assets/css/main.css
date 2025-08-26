@@ -605,6 +605,7 @@ textarea {
 
 .main {
   grid-area: main;
+  direction: rtl;
 }
 @media all and (min-width: 56.25em) {
   .main {
@@ -627,6 +628,7 @@ textarea {
 
 .right-bar {
   grid-area: right-bar;
+  direction: rtl;
 }
 @media all and (max-width: 74.9375em) {
   .right-bar {
@@ -747,7 +749,12 @@ textarea {
 
 .navbar {
   margin: auto 0;
+  /* direction: rtl; */
 }
+.navbar li {
+  direction: rtl;
+}
+
 .navbar .navbar__menu {
   display: flex;
   flex-direction: column;
