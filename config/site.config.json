@@ -2,13 +2,13 @@
     "uuid": "uuid-1756133206885-810659905",
     "name": "aabs-dwrpnh",
     "displayName": "عباس داورپناه",
-    "description": "برگزارکننده و ترویج دهنده فلسفه و فرهنگ نرم‌افزار آزاد\nدر جستجوی آزادی تجربه‌هام رو به اشتراک میزارم بابتش\nفرهنگ آزاد، دانش آزاد، نرم افزار آزاد",
-    "synced": false,
+    "description": "برگزارکننده و ترویج دهنده فلسفه و فرهنگ نرم‌افزار آزاد\nدر جستجوی آزادی تجربه‌هام رو به اشتراک میزارم بابتش\nفرهنگ آزاد، دانش آزاد، نرم افزار آزاد.",
+    "synced": "synced",
     "logo": {
         "color": 1,
         "icon": "web-pizza"
     },
-    "domain": "",
+    "domain": "https://abbasdp.ir",
     "language": "fa",
     "spellchecking": false,
     "advanced": {
@@ -173,12 +173,12 @@
         }
     },
     "deployment": {
-        "protocol": "",
+        "protocol": "manual",
         "relativeUrls": false,
         "port": "",
         "server": "",
         "username": "",
-        "password": "",
+        "password": "publii uuid-1756133206885-810659905",
         "askforpassword": false,
         "rejectUnauthorized": true,
         "path": "",
@@ -188,8 +188,8 @@
             "customProvider": false,
             "provider": "aws",
             "endpoint": "",
-            "id": "",
-            "key": "",
+            "id": "publii-s3-id uuid-1756133206885-810659905",
+            "key": "publii-s3-key uuid-1756133206885-810659905",
             "bucket": "",
             "region": "",
             "customRegion": "",
@@ -200,7 +200,7 @@
             "url": "",
             "branch": "",
             "user": "",
-            "password": "",
+            "password": "publii-git-password uuid-1756133206885-810659905",
             "commitAuthor": "",
             "commitEmail": "",
             "commitMessage": "Publii: update content"
@@ -210,7 +210,7 @@
             "user": "",
             "repo": "",
             "branch": "",
-            "token": "",
+            "token": "publii-gh-token uuid-1756133206885-810659905",
             "parallelOperations": 1,
             "apiRateLimiting": 1
         },
@@ -219,11 +219,11 @@
             "rejectUnauthorized": true,
             "repo": "",
             "branch": "",
-            "token": ""
+            "token": "publii-gl-token uuid-1756133206885-810659905"
         },
         "netlify": {
-            "id": "",
-            "token": ""
+            "id": "publii-netlify-id uuid-1756133206885-810659905",
+            "token": "publii-netlify-token uuid-1756133206885-810659905"
         },
         "google": {
             "key": "",
@@ -235,5 +235,6 @@
             "outputDirectory": ""
         }
     },
-    "theme": "mono"
+    "theme": "mono",
+    "syncDate": 1756246047578
 }

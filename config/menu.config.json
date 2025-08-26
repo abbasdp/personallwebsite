@@ -2,68 +2,7 @@
     {
         "name": "منو",
         "position": "mainMenu",
-        "items": [
-            {
-                "id": 1756157919385,
-                "label": "عباس",
-                "title": "",
-                "type": "separator",
-                "target": "_self",
-                "rel": "",
-                "link": "",
-                "cssClass": "",
-                "isHidden": false,
-                "items": []
-            },
-            {
-                "id": 1756157932257,
-                "label": "درباره عباس",
-                "title": "",
-                "type": "tag",
-                "target": "_self",
-                "rel": "",
-                "link": 2,
-                "cssClass": "",
-                "isHidden": false,
-                "items": []
-            },
-            {
-                "id": 17561579339691,
-                "label": "درباره عباس",
-                "title": "",
-                "type": "tag",
-                "target": "_self",
-                "rel": "",
-                "link": 1,
-                "cssClass": "",
-                "isHidden": false,
-                "items": []
-            },
-            {
-                "id": 17561579344511,
-                "label": "عباس",
-                "title": "",
-                "type": "separator",
-                "target": "_self",
-                "rel": "",
-                "link": "",
-                "cssClass": "",
-                "isHidden": false,
-                "items": []
-            },
-            {
-                "id": 17561579350861,
-                "label": "درباره عباس",
-                "title": "",
-                "type": "separator",
-                "target": "_self",
-                "rel": "",
-                "link": "",
-                "cssClass": "",
-                "isHidden": false,
-                "items": []
-            }
-        ],
+        "items": [],
         "maxLevels": "1"
     }
 ]

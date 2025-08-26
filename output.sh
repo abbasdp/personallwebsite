@@ -18,6 +18,6 @@ cd ../output
 git add .
 git commit -m "Deploy website $DEPLOY_NUM"
 
-git push
+git push origin gh-pages
 
 echo "Deploy Number $DEPLOY_NUM sucessfuly."
