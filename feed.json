@@ -1,0 +1,14 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "عباس داورپناه",
+    "description": "",
+    "home_page_url": "https://abbasdp.ir",
+    "feed_url": "https://abbasdp.ir/feed.json",
+    "user_comment": "",
+    "icon": "https://abbasdp.ir/media/website/C0003T01-lg.JPG",
+    "author": {
+        "name": "abbas davarpanah"
+    },
+    "items": [
+    ]
+}
