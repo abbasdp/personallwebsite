@@ -749,10 +749,7 @@ textarea {
 
 .navbar {
   margin: auto 0;
-  /* direction: rtl; */
-}
-.navbar li {
-  direction: rtl;
+  text-align: right;
 }
 
 .navbar .navbar__menu {

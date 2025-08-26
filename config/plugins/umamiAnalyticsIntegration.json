@@ -1,0 +1,12 @@
+{
+    "dataWebsiteID": "19a6e475-8742-4b23-840b-5162b57d55f4",
+    "dataHost": "https://cloud.umami.is/script.js",
+    "dataAutoTrack": true,
+    "doNotTrack": false,
+    "cache": false,
+    "dataHostURL": "",
+    "dataDomains": "",
+    "previewMode": false,
+    "cookieBannerIntegration": false,
+    "cookieBannerGroup": ""
+}

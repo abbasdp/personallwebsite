@@ -1,8 +1,8 @@
 {
     "uuid": "uuid-1756133206885-810659905",
-    "name": "abbas-davarpanah",
-    "displayName": "abbas davarpanah",
-    "description": "وبسایت شخصی عباس",
+    "name": "aabs-dwrpnh",
+    "displayName": "عباس داورپناه",
+    "description": "برگزارکننده و ترویج دهنده فلسفه و فرهنگ نرم‌افزار آزاد\nدر جستجوی آزادی تجربه‌هام رو به اشتراک میزارم بابتش\nفرهنگ آزاد، دانش آزاد، نرم افزار آزاد",
     "synced": false,
     "logo": {
         "color": 1,
@@ -30,7 +30,7 @@
         "sitemapExcludedFiles": "",
         "usePageTitleInsteadItemName": true,
         "openGraphEnabled": 1,
-        "openGraphImage": "FSF40-banner.png",
+        "openGraphImage": "FSF40-banner-2.png",
         "openGraphAppId": "",
         "twitterCardsEnabled": 1,
         "twitterCardsType": "summary",

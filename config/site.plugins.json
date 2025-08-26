@@ -11,7 +11,7 @@
     "docSearch": false,
     "easy-htaccess": false,
     "emailAddressObfuscation": false,
-    "externalLinks": false,
+    "externalLinks": true,
     "featherIcons": false,
     "front-slider": false,
     "goatcounter-analytics-plugin-1.1.0": false,
@@ -23,7 +23,7 @@
     "metaTabColors": false,
     "pagePrefetching": false,
     "publii-2pdf": false,
-    "publii-humans-txt-1.0.0": false,
+    "publii-humans-txt-1.0.0": true,
     "publii-reading-progress-bar": false,
     "reading-time-plugin-1.0.0": false,
     "simpleLightboxGallery": false,
@@ -31,5 +31,5 @@
     "staticCustomSearch": false,
     "syntaxHighlighter": false,
     "telegramComments": false,
-    "umamiAnalyticsIntegration": false
+    "umamiAnalyticsIntegration": true
 }

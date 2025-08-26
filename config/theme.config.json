@@ -4,17 +4,17 @@
         "tagsPostsPerPage": 8,
         "authorsPostsPerPage": 8,
         "excerptLength": 12,
-        "logo": ""
+        "logo": "media/website/C0003T01-lg.JPG"
     },
     "customConfig": {
         "pageMargin": "25px",
         "mainColumnWidth": "940px",
         "rightColumnWidth": "270px",
         "entryWidth": "660px",
-        "textHero": "<p>خلاصه‌ای از من<br>اصلی ترین هدفم منتقل کردن همه داده ها و دانش و  g خصوصا تجربه های خودم هست<br><br>مدیریت رو دوست دارم و همچنان دارم راجبش مطالعه میکنم و یاد میگیرم<br><br>هیچ وقت من من نمیکنم هر چیزی هستم به لطف تیمی هست که دارم باهاش کار میکنم ما با هم رشد میکنیم<br><br>هیچ‌وقت دانشگاه نرفتم و مدرک تحصیلی دانشگاهی ندارم البته تحمیل‌گر نیستم که کاری که کردم درسته اما تا الان از بابتش پشیمون نشدم<br><br>شیراز پتانسیل رشد زیادی در حوزه تک داره و من در این قسمت از توانایی های خودم برای رشد این قسمت مایه میزارم<br><br>برنامه نویسی عضو جدانشدنی از روزمرگی هام بوده که الان جاش رو رویداد ها و همایش های این حوزه پر کرده و تعادل رو حفظ میکنم به هر دوی این علاقه ها بپردازم<br><br>داخل عکس‌هام مثل پنگوئن حواس پرت هستم و به دوربین نگاه نمیکنم</p>",
+        "textHero": "<h1>عباس داورپناه</h1>\n<ul>\n<li>یه برنامه‌نویس و علاقه‌مند به نرم افزارهای آزاد</li>\n<li>طرفدار جنبش نرم‌افزار آزاد و گنولینوکس یوزر</li>\n<li>مطالب من تجربی هست نه آموزشی</li>\n</ul>",
         "postFeaturedImageHeight": "auto",
         "relatedPostsNumber": "2",
-        "errorPage": "<h1>خطای ۴۰۴ </h1>\n<p>The page you were looking for appears to have been moved, deleted or does not exist. You could go back to where you were or head straight to our home page.</p>",
+        "errorPage": "<h1>خطای ۴۰۴ </h1>\n<p>صفحه‌ای که به دنبال آن بودید به نظر می‌رسد منتقل شده، حذف شده یا وجود ندارد. می‌توانید به صفحه قبلی بازگردید یا مستقیماً به صفحه اصلی ما بروید.</p>",
         "cardsAuthor": true,
         "cardsDate": false,
         "cardsMainTag": true,
