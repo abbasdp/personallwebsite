@@ -405,10 +405,10 @@
             "type": "checkbox"
         },
         {
-            "name": "socialFacebook",
-            "label": "Facebook",
+            "name": "socialpixelfed",
+            "label": "pixelfed",
             "group": "Sidebar",
-            "placeholder": "Please enter your Facebook URL",
+            "placeholder": "Please enter your pixelfed URL",
             "value": "",
             "type": "text",
             "dependencies": [
@@ -461,10 +461,10 @@
             ]
         },
         {
-            "name": "socialVimeo",
-            "label": "Vimeo",
+            "name": "socialcodeberg",
+            "label": "codeberg",
             "group": "Sidebar",
-            "placeholder": "Please enter your Vimeo URL",
+            "placeholder": "Please enter your codeberg URL",
             "value": "",
             "type": "text",
             "dependencies": [
@@ -475,10 +475,10 @@
             ]
         },
         {
-            "name": "socialPinterest",
-            "label": "Pinterest",
+            "name": "socialmatrix",
+            "label": "matrix",
             "group": "Sidebar",
-            "placeholder": "Please enter your Pinterest URL",
+            "placeholder": "Please enter your matrix URL",
             "value": "",
             "type": "text",
             "dependencies": [
@@ -489,10 +489,10 @@
             ]
         },
         {
-            "name": "socialYoutube",
-            "label": "Youtube",
+            "name": "socialMastadon",
+            "label": "Mastadon",
             "group": "Sidebar",
-            "placeholder": "Please enter your Youtube URL",
+            "placeholder": "Please enter your Mastadon URL",
             "value": "",
             "type": "text",
             "dependencies": [
