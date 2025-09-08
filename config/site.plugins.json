@@ -31,5 +31,7 @@
     "staticCustomSearch": false,
     "syntaxHighlighter": false,
     "telegramComments": false,
-    "umamiAnalyticsIntegration": true
+    "umamiAnalyticsIntegration": true,
+    "Key Replacement": false,
+    "alt-filler": false
 }
