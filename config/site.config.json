@@ -106,7 +106,7 @@
             "errorPage": "404.html",
             "searchPage": "search.html"
         },
-        "customHeadCode": "",
+        "customHeadCode": "<meta name=\"fediverse:creator\" content=\"@abbas_dp@techhub.social\">",
         "customBodyCode": "",
         "customCommentsCode": "",
         "customSearchInput": "",
@@ -170,6 +170,13 @@
             "customElements": "",
             "codemirrorTabSize": 4,
             "codemirrorAutoIndent": true
+        },
+        "customSocialSharing": "",
+        "customHTML": {
+            "beforePost": "",
+            "afterPost": "",
+            "beforePage": "",
+            "afterPage": ""
         }
     },
     "deployment": {
@@ -194,7 +201,9 @@
             "region": "",
             "customRegion": "",
             "prefix": "",
-            "acl": "public-read"
+            "acl": "public-read",
+            "htmlCacheControl": "no-cache, no-store",
+            "otherCacheControl": "public, max-age=2592000"
         },
         "git": {
             "url": "",
@@ -236,5 +245,5 @@
         }
     },
     "theme": "mono",
-    "syncDate": 1756500082714
+    "syncDate": 1757307089776
 }
