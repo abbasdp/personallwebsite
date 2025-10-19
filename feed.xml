@@ -3,10 +3,28 @@
     <title>عباس داورپناه</title>
     <link href="https://abbasdp.ir/feed.xml" rel="self" />
     <link href="https://abbasdp.ir" />
-    <updated>۱۹۷۰-۰۱-۰۱T۰۳:۳۰:۰۰+۰۳:۳۰</updated>
+    <updated>۲۰۲۵-۱۰-۱۹T۰۷:۰۲:۱۳+۰۳:۳۰</updated>
     <author>
         <name>abbas davarpanah</name>
     </author>
     <id>https://abbasdp.ir</id>
 
+    <entry>
+        <title>جامعه نرم‌افزار آزاد شیرازلینوکس</title>
+        <author>
+            <name>abbas davarpanah</name>
+        </author>
+        <link href="https://abbasdp.ir/jmaah-nrmfzr-azd-shyrzlynwkhs/"/>
+        <id>https://abbasdp.ir/jmaah-nrmfzr-azd-shyrzlynwkhs/</id>
+
+        <updated>۲۰۲۵-۱۰-۱۹T۰۷:۰۰:۱۳+۰۳:۳۰</updated>
+            <summary></summary>
+        <content type="html">
+            <![CDATA[
+                <div><script>
+        window.location.replace("https://sudoshz.ir"); // ریدایرکت به /app2
+</script></div>
+            ]]>
+        </content>
+    </entry>
 </feed>

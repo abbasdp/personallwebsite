@@ -10,5 +10,18 @@
         "name": "abbas davarpanah"
     },
     "items": [
+        {
+            "id": "https://abbasdp.ir/jmaah-nrmfzr-azd-shyrzlynwkhs/",
+            "url": "https://abbasdp.ir/jmaah-nrmfzr-azd-shyrzlynwkhs/",
+            "title": "جامعه نرم‌افزار آزاد شیرازلینوکس",
+            "content_html": "<div><script>\n        window.location.replace(\"https://sudoshz.ir\"); // ریدایرکت به /app2\n</script></div>",
+            "author": {
+                "name": "abbas davarpanah"
+            },
+            "tags": [
+            ],
+            "date_published": "۲۰۲۵-۱۰-۱۹T۰۷:۰۰:۱۳+۰۳:۳۰",
+            "date_modified": "۲۰۲۵-۱۰-۱۹T۰۷:۰۲:۱۳+۰۳:۳۰"
+        }
     ]
 }
