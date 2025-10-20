@@ -18,6 +18,10 @@ section {
   display: block;
 }
 
+.ltr {
+  direction: ltr !important;
+}
+
 li {
   list-style: none;
 }
