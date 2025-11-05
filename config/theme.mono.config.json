@@ -76,7 +76,7 @@
         "formatDateCustom": "HH:mm:ss YY/MM/DD",
         "lazyLoadEffect": "fadein",
         "faviconUpload": "media/website/abbasdp.png",
-        "faviconExtension": "image/x-icon"
+        "faviconExtension": "image/png"
     },
     "postConfig": {
         "displayPostLead": "",
