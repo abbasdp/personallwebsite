@@ -103,12 +103,12 @@
         "displayPostList": 1
     },
     "authorConfig": {
-        "displayShortDescription": "داخل عکس‌هام مثل پنگوئن حواس پرت هستم و به دوربین نگاه نمیکنم",
-        "displayAvatar": 1,
-        "displayPostCounter": 1,
-        "displayDescription": 1,
-        "displayWebsite": 1,
-        "displayPostList": 1
+        "displayShortDescription": "",
+        "displayAvatar": "0",
+        "displayPostCounter": "0",
+        "displayDescription": "0",
+        "displayWebsite": "0",
+        "displayPostList": "0"
     },
     "defaultTemplates": {
         "post": "",
