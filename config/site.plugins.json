@@ -33,5 +33,6 @@
     "telegramComments": false,
     "umamiAnalyticsIntegration": true,
     "Key Replacement": false,
-    "alt-filler": false
+    "alt-filler": false,
+    "publii-image-attribution-1.0.0": false
 }
