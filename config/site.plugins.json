@@ -20,19 +20,18 @@
     "hyvorTalkComments": false,
     "lucideIcons": false,
     "mermaidSupport": false,
-    "metaTabColors": false,
+    "metaTabColors": true,
     "pagePrefetching": false,
     "publii-2pdf": false,
     "publii-humans-txt-1.0.0": true,
-    "publii-reading-progress-bar": false,
-    "reading-time-plugin-1.0.0": false,
     "simpleLightboxGallery": false,
     "simplehighlight": false,
     "staticCustomSearch": false,
     "syntaxHighlighter": false,
     "telegramComments": false,
     "umamiAnalyticsIntegration": true,
-    "Key Replacement": false,
+    "Key Replacement": true,
     "alt-filler": false,
-    "publii-image-attribution-1.0.0": false
+    "publii-image-attribution-1.0.0": false,
+    "readingTime": true
 }

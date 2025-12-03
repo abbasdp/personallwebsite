@@ -205,8 +205,14 @@ ul,
 ol {
   margin-left: 2rem;
 }
-ul > li,
+
 ol > li {
+  list-style: decimal;
+  list-style-type: persian;
+  padding: 0 0 var(--baseline) calc(var(--baseline) * 4);
+}
+
+ul > li {
   list-style: inherit;
   padding: 0 0 var(--baseline) calc(var(--baseline) * 4);
 }

@@ -2,7 +2,20 @@
     {
         "name": "منو",
         "position": "mainMenu",
-        "items": [],
+        "items": [
+            {
+                "id": 1764780661698,
+                "label": "خانه",
+                "title": "",
+                "type": "frontpage",
+                "target": "_self",
+                "rel": "",
+                "link": "empty",
+                "cssClass": "",
+                "isHidden": false,
+                "items": []
+            }
+        ],
         "maxLevels": "1"
     }
 ]
