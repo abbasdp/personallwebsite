@@ -6,21 +6,21 @@
 		},
 
 		"sidebar": {
-			"featured": "Featured Posts",
+			"featured": "پست‌های برگزیده",
 			"authors": "Authors",
 			"authorsPost": "Post: ",
-			"tags": "Recommended Topics",
+			"tags": "برچسب‌های پیشنهادی",
 			"newsletter": "Subscribe to Mono",
 			"newsletterDesc": "Sign up to receive email updates and to hear what's going on with us!"
 		},
 
 		"pagination": {
-			"prev": "Previous",
-			"next": "Next"
+			"prev": "قبلی",
+			"next": "بغدی"
 		},
 
 		"shareButtons": {
-			"shareWith": "Share with",
+			"shareWith": "انتشار در",
 			"shareWithFacebook": "Facebook",
 			"shareWithTwitter": "Twitter",
 			"shareWithPinterest": "Pinterest",
@@ -39,11 +39,11 @@
    },
 
 	"page": {
-		"childPages": "Child pages"
+		"childPages": "زیر صفحه"
   },
 
 	"tags": {
-		"tagsPageTitle": "Tags",
+		"tagsPageTitle": "برچسب",
 		"description": "Collection of all %s tags"
 	},
 	
