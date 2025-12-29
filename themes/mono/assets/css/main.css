@@ -1164,7 +1164,7 @@ textarea {
   color: var(--accent-medium);
 }
 .c-card__meta > * + *::before {
-  content: "·";
+  content: "#";
   margin-right: 10px;
 }
 .c-card__title {
