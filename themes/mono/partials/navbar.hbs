@@ -1,9 +1,14 @@
 <div class="left-bar">
    <div class="left-bar__inner">
       <header class="header">
-         <a class="logo" href="{{@website.url}}">
+         <a class="logo" href="{{@website.url}}" title="{{@website.name}} — صفحهٔ اصلی">
             {{#if @website.logo}}
-               <img src="{{@website.logo}}" alt="{{@website.name}}" width="{{@website.logoSize.width}}" height="{{@website.logoSize.height}}">
+               <img
+                  src="{{@website.logo}}"
+                  alt="{{@website.name}}"
+                  width="{{@website.logoSize.width}}"
+                  height="{{@website.logoSize.height}}"
+                  decoding="async">
             {{else}}
                {{@website.name}}
             {{/if}}
@@ -12,13 +17,6 @@
          {{#if menus.mainMenu}}
             {{> menu menus.mainMenu}}
          {{/if}}
-         {{!-- <a class="logo logo--atbottom" href="{{@website.url}}">
-            {{#if @website.logo}}
-               <img src="{{@website.logo}}" alt="{{@website.name}}" width="{{@website.logoSize.width}}" height="{{@website.logoSize.height}}">
-            {{else}}
-               {{@website.name}}
-            {{/if}}
-         </a> --}}
       </header>
    </div>
 </div>

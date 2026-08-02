@@ -1,35 +1,74 @@
 {{> head}}
 {{> navbar}}
-<main class="main">
-   <div class="hero">
+<main class="main" id="main-content">
+   <section class="hero" aria-labelledby="hero-title">
       <div class="main__inner">
             {{{@config.custom.textHero}}}
       </div>
-   </div>
+   </section>
 
    <div class="main__inner">
+         <section class="freedoms" aria-labelledby="freedoms-title">
+            <header class="freedoms__head">
+               <h2 id="freedoms-title">چهار آزادی بنیادین</h2>
+               <p>
+                  پیش از خواندن نوشته‌ها، این تعریف کوتاه را نگه دارید:
+                  نرم‌افزار آزاد دربارهٔ آزادی کاربر است، نه فقط رایگان بودن.
+               </p>
+            </header>
+            <div class="freedoms__grid">
+               <article class="freedom-card">
+                  <span class="freedom-card__num">آزادی ۰</span>
+                  <h3>اجرا برای هر منظوری</h3>
+                  <p>اجرای برنامه برای هر هدفی که می‌خواهید، بدون محدودیت.</p>
+               </article>
+               <article class="freedom-card">
+                  <span class="freedom-card__num">آزادی ۱</span>
+                  <h3>مطالعه و تغییر</h3>
+                  <p>دسترسی به کد منبع برای فهمیدن نحوهٔ کار و تطبیق آن با نیازتان.</p>
+               </article>
+               <article class="freedom-card">
+                  <span class="freedom-card__num">آزادی ۲</span>
+                  <h3>بازتوزیع</h3>
+                  <p>بازتوزیع نسخه‌ها تا بتوانید به دیگران کمک کنید.</p>
+               </article>
+               <article class="freedom-card">
+                  <span class="freedom-card__num">آزادی ۳</span>
+                  <h3>بهبود و انتشار</h3>
+                  <p>بهبود برنامه و انتشار آن برای نفع کل جامعه.</p>
+               </article>
+            </div>
+         </section>
+
+         <header class="posts-head" id="posts-section">
+            <div>
+               <h2>برای خواندن</h2>
+               <p>یادداشت‌ها و روایت‌هایی دربارهٔ فلسفه، فرهنگ و تجربهٔ نرم‌افزار آزاد</p>
+            </div>
+         </header>
+
          {{#each posts}}
-            <article class="c-card">
+            <article class="c-card" itemscope itemtype="https://schema.org/BlogPosting">
                {{#checkIfAny @config.custom.cardsAuthor @config.custom.cardsDate @config.custom.cardsMainTag}}
                   <div class="c-card__meta">
                      {{#if @config.custom.cardsAuthor}}
-                        <div class="c-card__author">
+                        <div class="c-card__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
                            {{#author}}
                               {{#if avatar}}
                                  <img
-                                    src="{{avatarImage.url}}" 
+                                    src="{{avatarImage.url}}"
                                     {{ lazyload "lazy" }}
                                     height="{{avatarImage.height}}"
-                                    width="{{avatarImage.width}}" 
+                                    width="{{avatarImage.width}}"
                                     alt="{{avatarImage.alt}}">
                               {{/if}}
-                              <a href="{{url}}">{{name}}</a>
+                              <a href="{{url}}" itemprop="url"><span itemprop="name">{{name}}</span></a>
                            {{/author}}
                         </div>
                      {{/if}}
 
                      {{#if @config.custom.cardsDate}}
-                        <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                        <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" itemprop="datePublished">
                            {{#checkIf @config.custom.formatDate '!=' 'custom'}}
                               {{date createdAt @config.custom.formatDate}}
                            {{else}}
@@ -40,7 +79,7 @@
 
                      {{#if @config.custom.cardsMainTag}}
                         {{#if mainTag}}
-                           <a href="{{mainTag.url}}" class="c-card-tag">{{mainTag.name}}</a>
+                           <a href="{{mainTag.url}}" class="c-card-tag" rel="tag">{{mainTag.name}}</a>
                         {{/if}}
                      {{/if}}
                   </div>
@@ -49,7 +88,7 @@
                {{#if @config.custom.cardsImage}}
                   {{#featuredImage}}
                      {{#if url}}
-                        <a href="{{../url}}" class="c-card__image">
+                        <a href="{{../url}}" class="c-card__image" tabindex="-1" aria-hidden="true">
                            <img
                               src="{{url}}"
                               {{#if @config.site.responsiveImages}}
@@ -58,23 +97,26 @@
                               {{ lazyload "lazy" }}
                               height="{{height}}"
                               width="{{width}}"
-                              alt="{{alt}}">
+                              alt="{{#if alt}}{{alt}}{{else}}{{../title}}{{/if}}"
+                              itemprop="image">
                         </a>
                      {{/if}}
                   {{/featuredImage}}
                {{/if}}
 
                <header class="c-card__header">
-                  <h2 class="c-card__title">
-                     <a href="{{url}}">{{title}}</a>
+                  <h2 class="c-card__title" itemprop="headline">
+                     <a href="{{url}}" itemprop="url">{{title}}</a>
                   </h2>
                   {{#if @config.custom.cardsExcerpt}}
+                     <div itemprop="description">
                      {{#if hasCustomExcerpt}}
                         {{{ excerpt }}}
                      {{else}}
                         <p>{{{ excerpt }}}</p>
                      {{/if}}
-                  {{/if}}  
+                     </div>
+                  {{/if}}
                </header>
             </article>
          {{/each}}

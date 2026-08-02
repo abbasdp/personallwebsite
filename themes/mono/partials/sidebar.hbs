@@ -1,7 +1,14 @@
-{{#checkIfAny @config.custom.featured @config.custom.authors @config.custom.tags @config.custom.newsletter @config.custom.socialButtons @config.custom.copyright}}
-   <div class="right-bar">
+{{#checkIfAny @config.custom.featured @config.custom.authors @config.custom.tags @config.custom.newsletter @config.custom.socialButtons}}
+   <aside class="right-bar" aria-label="نوار کناری">
       <div class="right-bar__inner">
          <div class="sidebar">
+            <section class="box box--mission">
+               <h3 class="box__title">مأموریت</h3>
+               <p>هر راهی برای ترویج فرهنگ و فلسفهٔ نرم‌افزار آزاد لازم باشد، از آن استفاده می‌کنم و تجربه‌هایم را به اشتراک می‌گذارم.</p>
+               <p><a href="https://www.gnu.org/philosophy/free-sw.fa.html" rel="noopener" target="_blank">تعریف نرم‌افزار آزاد (GNU)</a></p>
+               <p><a href="https://sudoshz.ir" rel="noopener" target="_blank">جامعهٔ شیرازلینوکس</a></p>
+            </section>
+
             {{#if @config.custom.featured}}
                {{#if featuredPosts}}
                   <section class="box featured">
@@ -12,19 +19,19 @@
                               <li class="featured__item">
                                  {{#if @config.custom.featuredImage}}
                                     {{#featuredImage}}
-                                       {{#if url}}                               
-                                          <a href="{{../url}}" class="featured__image">
-                                             <img 
+                                       {{#if url}}
+                                          <a href="{{../url}}" class="featured__image" tabindex="-1" aria-hidden="true">
+                                             <img
                                                 {{#if @config.site.responsiveImages}}
                                                    src="{{urlXs}}"
                                                 {{else}}
                                                    src="{{url}}"
                                                 {{/if}}
-                                                {{ lazyload "lazy" }} 
-                                                alt="{{alt}}" 
-                                                height="{{height}}" 
-                                                width="{{height}}">
-                                          </a>                               
+                                                {{ lazyload "lazy" }}
+                                                alt="{{#if alt}}{{alt}}{{else}}{{../title}}{{/if}}"
+                                                height="{{height}}"
+                                                width="{{width}}">
+                                          </a>
                                        {{/if}}
                                     {{/featuredImage}}
                                  {{/if}}
@@ -57,14 +64,14 @@
                            <li class="authors__item">
                               {{#if @config.custom.authorsAvatar}}
                                  {{#if avatar}}
-                                    <a href="{{url}}" class="authors__image">                            
-                                       <img 
-                                          src="{{avatarImage.url}}" 
-                                          {{ lazyload "lazy" }} 
-                                          alt="{{avatarImage.alt}}" 
-                                          height="{{avatarImage.height}}" 
-                                          width="{{avatarImage.width}}" 
-                                          class="authors__img">                           
+                                    <a href="{{url}}" class="authors__image">
+                                       <img
+                                          src="{{avatarImage.url}}"
+                                          {{ lazyload "lazy" }}
+                                          alt="{{avatarImage.alt}}"
+                                          height="{{avatarImage.height}}"
+                                          width="{{avatarImage.width}}"
+                                          class="authors__img">
                                     </a>
                                  {{/if}}
                               {{/if}}
@@ -89,7 +96,7 @@
                         {{#each tags}}
                            {{#checkIf @index '<' @config.custom.tagsAmount}}
                               <li class="tags__item">
-                                 <a href="{{url}}" class="btn btn--gray">{{name}}
+                                 <a href="{{url}}" class="btn btn--gray" rel="tag">{{name}}
                                     {{#if @config.custom.tagsPostCount}}
                                        <sup>({{postsNumber}})</sup>
                                     {{/if}}
@@ -102,7 +109,6 @@
                {{/if}}
             {{/if}}
 
-
             {{#if @config.custom.newsletter}}
                <section class="box newsletter">
                   <h3 class="box__title">{{ translate 'partials.sidebar.newsletter' }}</h3>
@@ -110,113 +116,66 @@
                   {{{@config.custom.newsletterFormCode}}}
                </section>
             {{/if}}
-         
+
             {{#if @config.custom.socialButtons}}
-               <div class="box follow">
-         {{#if @config.custom.socialMastadon}}
-            <a href="{{@config.custom.socialMastadon}}" rel="me" aria-label="Mastadon" class="tltp tltp--top">
-               <svg width="800px" height="800px" viewBox="-9 0 274 274" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
-                     <g>
-                           <path d="M249.874103,164.084793 C246.121107,183.392442 216.260831,204.522765 181.966269,208.61788 C164.083135,210.751705 146.475762,212.712995 127.700462,211.851797 C96.9952088,210.444977 72.7666374,204.522765 72.7666374,204.522765 C72.7666374,207.511889 72.9509692,210.357972 73.3196328,213.019724 C77.3115222,243.322396 103.36719,245.137696 128.048481,245.984147 C152.959817,246.836498 175.141568,239.842212 175.141568,239.842212 L176.164978,262.363134 C176.164978,262.363134 158.740462,271.719816 127.700462,273.440737 C110.584149,274.381567 89.33143,273.010138 64.5778816,266.458249 C10.8916144,252.248479 1.65880329,195.021567 0.246084399,136.955576 C-0.184514679,119.715392 0.080923109,103.458802 0.080923109,89.8624885 C0.080923109,30.4870046 38.9837803,13.0831336 38.9837803,13.0831336 C58.5996328,4.07447005 92.258619,0.286082949 127.250693,0 L128.110416,0 C163.10249,0.286082949 196.783596,4.07447005 216.397974,13.0831336 C216.397974,13.0831336 255.299356,30.4870046 255.299356,89.8624885 C255.299356,89.8624885 255.787467,133.670046 249.874103,164.084793" fill="#3088D4">
-
-               </path>
-                           <path d="M209.412536,94.4687189 L209.412536,166.362544 L180.929587,166.362544 L180.929587,96.5818986 C180.929587,81.8722212 174.740462,74.4060461 162.360739,74.4060461 C148.672997,74.4060461 141.812905,83.2628203 141.812905,100.775816 L141.812905,138.970839 L113.498066,138.970839 L113.498066,100.775816 C113.498066,83.2628203 106.636499,74.4060461 92.9487572,74.4060461 C80.5690337,74.4060461 74.3799093,81.8722212 74.3799093,96.5818986 L74.3799093,166.362544 L45.89696,166.362544 L45.89696,94.4687189 C45.89696,79.7752627 49.6381581,68.0989493 57.1529968,59.460424 C64.9023056,50.8218986 75.050877,46.3935115 87.6488494,46.3935115 C102.224333,46.3935115 113.262121,51.9957235 120.560186,63.2016221 L127.654748,75.0947097 L134.750785,63.2016221 C142.047375,51.9957235 153.085163,46.3935115 167.662121,46.3935115 C180.258619,46.3935115 190.40719,50.8218986 198.157974,59.460424 C205.671338,68.0989493 209.412536,79.7752627 209.412536,94.4687189" fill="#FFFFFF">
-
-               </path>
-                     </g>
-               </svg>
-            </a>
-         {{/if}}
-         {{!-- {{#if @config.custom.socialTwitter}}
-            <a href="{{@config.custom.socialTwitter}}" aria-label="Twitter" class="twitter">
-               <svg viewBox="0 0 24 24">
-                  <path d="m14.093,10.315L22.283,1h-1.941l-7.111,8.089L7.551,1H1l8.589,12.231L1,23h1.941l7.51-8.542,5.998,8.542h6.551l-8.907-12.685h0Zm-2.658,3.024l-.87-1.218L3.64,2.43h2.981l5.588,7.821.87,1.218,7.264,10.166h-2.981l-5.927-8.296h0Z" />
-               </svg>
-            </a>
-         {{/if}} --}}
-         {{#if @config.custom.socialpixelfed}}
-            <a href="{{@config.custom.socialpixelfed}}" aria-label="pixelfed" class="tltp tltp--top">
-               <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 512 512"><linearGradient id="a" x1="522.328" x2="214.869" y1="497.767" y2="484.513" gradientTransform="matrix(.6401 .5371 .7693 -.9168 -499.12 475.68)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ff5c34"/><stop offset="1" style="stop-color:#eb0256"/></linearGradient><path d="M256 256c-41.9-57.3-122-70.5-179-29.3S7.9 347.6 49.8 404.9l3.2 4.3c-68.3-89.4-71.7-214.7-3.6-306.6l1.2-1.6C92.8 45 173 34.2 229.7 77s68.5 122.9 26.3 179" style="fill:url(#a)"/><linearGradient id="b" x1="297.013" x2="409.819" y1="195.858" y2="461.966" gradientTransform="matrix(.9332 .783 .5277 -.6289 -326.97 299.689)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#a63fdb"/><stop offset="1" style="stop-color:#ff257e"/></linearGradient><path d="M256 256c-66.7 22.6-101.8 95-78.4 161.9s96.5 102.7 163.2 80.2l4.4-1.5c-82.9 29.7-179.6 15.4-252.6-45.9-15-12.6-28.2-26.5-39.7-41.5l-3.2-4.3C7.9 347.6 20.1 267.8 77 226.7s137.1-28 179 29.3" style="fill:url(#b)"/><linearGradient id="c" x1="526.922" x2="776.662" y1="557.506" y2="502.516" gradientTransform="matrix(.6731 .5648 .7316 -.8719 -472.875 447.687)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#00fff0"/><stop offset="1" style="stop-color:#0087ff"/></linearGradient><path d="M256 256c.4 70.5 58.1 128.1 128.8 128.5S512.4 328.1 512 257.6V256c.8 58.5-18.5 117.4-58.9 165.4-29.7 35.4-67.1 60.6-107.9 75.2l-4.4 1.5c-66.7 22.6-139.8-13.3-163.2-80.2S189.3 278.6 256 256" style="fill:url(#c)"/><linearGradient id="d" x1="561.674" x2="372.041" y1="757.16" y2="554.756" gradientTransform="matrix(.8028 .6736 .6133 -.731 -389.306 361.006)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#17c934"/><stop offset="1" style="stop-color:#03ff6e"/></linearGradient><path d="M256 256c67.4 22.2 139.3-14.1 160.8-81 21.4-67-15.8-139.2-83.2-161.4l-5.5-1.8c32.5 9.9 63.5 26.4 91.2 49.6 60.2 50.5 91.7 122.3 92.6 194.6v1.6c.4 70.5-56.5 127.4-127.2 126.9-70.6-.4-128.3-58-128.7-128.5" style="fill:url(#d)"/><linearGradient id="e" x1="313.405" x2="255.769" y1="458.084" y2="789.885" gradientTransform="matrix(.8728 .7323 .5642 -.6724 -353.784 325.631)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ffb000"/><stop offset="1" style="stop-color:#ff7725"/></linearGradient><path d="M256 256c42.2-56.1 30.4-136.2-26.3-179S92.8 45 50.6 101l-1.2 1.6c3-4.1 6.2-8.1 9.5-12C126.2 10.5 233-17.2 328.1 11.7l5.5 1.8C401 35.7 438.2 108 416.8 175c-21.5 66.9-93.4 103.2-160.8 81" style="fill:url(#e)"/><g style="opacity:.5443" transform="rotate(112 33.705 24.279)"><linearGradient id="f" x1="1035.026" x2="1459.374" y1="-334.307" y2="-308.286" gradientTransform="matrix(-.3201 -1.0852 -.7922 .4384 -9.836 859.279)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#9ee85d"/><stop offset="1" style="stop-color:#0ed061"/></linearGradient><path d="m67.3-504.3 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5-.1-26.4 2.2-38.4 6.5" style="fill:url(#f)"/><path d="m67.3-504.3 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5-.1-26.4 2.2-38.4 6.5" style="fill-opacity:.4999"/></g><linearGradient id="g" x1="313.405" x2="255.769" y1="458.084" y2="789.885" gradientTransform="matrix(.8728 .7323 .5642 -.6724 -353.784 325.631)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ffb000"/><stop offset="1" style="stop-color:#ff7725"/></linearGradient><path d="M256 256c42.2-56.1 30.4-136.2-26.3-179S92.8 45 50.6 101l-1.2 1.6c3-4.1 6.2-8.1 9.5-12C126.2 10.5 233-17.2 328.1 11.7l5.5 1.8C401 35.7 438.2 108 416.8 175c-21.5 66.9-93.4 103.2-160.8 81" style="opacity:.1;fill:url(#g)"/><linearGradient id="h" x1="119.825" x2="-89.437" y1="341.308" y2="332.286" gradientTransform="matrix(.7324 -.4401 -.6028 -1.0032 375.072 498.715)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ff5c34"/><stop offset="1" style="stop-color:#eb0256"/></linearGradient><path d="m49.7 104.3 1.3-1.7c42.9-56.5 123.4-68.1 179.7-26.1s67.2 121.9 24.3 178.4c-5.8-8.6-12.5-16.3-19.9-23 20.4-34.6 21.9-78.7-.1-115.3-32.1-53.1-101.8-70-155.8-37.6-11.5 6.9-21.4 15.5-29.5 25.3" style="opacity:.1801;fill:url(#h)"/><g style="opacity:.1801" transform="rotate(-31 5.178 11.673)"><linearGradient id="i" x1="-64.845" x2="-274.107" y1="352.125" y2="343.104" gradientTransform="matrix(.7324 .6028 .4401 -1.0032 66.95 614.806)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ff5c34"/><stop offset="1" style="stop-color:#eb0256"/></linearGradient><path d="m-3.7 116.3 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5 0-26.5 2.3-38.4 6.5" style="fill:url(#i)"/><path d="m-3.7 116.3 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5 0-26.5 2.3-38.4 6.5" style="fill-opacity:.7728"/></g><g style="opacity:.5842" transform="rotate(-103 14.085 34.04)"><linearGradient id="j" x1="-404.271" x2="-801.136" y1="-518.103" y2="-484.391" gradientTransform="matrix(-.1922 1.1404 .8325 .2633 174.73 682.921)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#a63fdb"/><stop offset="1" style="stop-color:#ff257e"/></linearGradient><path d="m-355.7-14.5 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5-.1-26.4 2.2-38.4 6.5" style="fill:url(#j)"/><path d="m-355.7-14.5 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5-.1-26.4 2.2-38.4 6.5" style="fill-opacity:.5031"/></g><g style="opacity:.5622" transform="rotate(-177.002 29.527 35.526)"><linearGradient id="k" x1="320.013" x2="224.777" y1="-854.815" y2="-1107.722" gradientTransform="matrix(-.8533 .06125 .04472 1.1688 146.908 815.596)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#21efe3"/><stop offset="1" style="stop-color:#2598ff"/></linearGradient><path d="m-307.2-408.3 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5 0-26.4 2.3-38.4 6.5" style="fill:url(#k)"/><path d="m-307.2-408.3 1.9-.8c65.9-26.3 140.9 5.1 167.5 70.2s-5.2 139.1-71.1 165.4c-.6-10.4-2.3-20.4-5.2-29.9 35.3-19.1 59.3-56.2 59.3-98.8 0-62.2-51.1-112.6-114-112.6-13.5 0-26.4 2.3-38.4 6.5"/></g><path d="m331.7 12.9 2 .6C401 35.7 438.2 108 416.8 175S323.4 278.2 256 256c6.2-8.3 11.3-17.1 15.2-26.3 39.4 8.1 81.6-4.9 109-37.6 40-47.7 33.3-119.1-15-159.6-10.3-8.6-21.6-15.1-33.5-19.6" style="fill-opacity:.4962"/><path d="M235.8 310.8h46.8c44.1 0 79.9-34.7 79.9-77.4S326.7 156 282.6 156H215c-25.5 0-46.1 20-46.1 44.7v173.8z"/><path d="M235.8 310.8h46.8c44.1 0 79.9-34.7 79.9-77.4S326.7 156 282.6 156H215c-25.5 0-46.1 20-46.1 44.7v173.8z" style="fill:#fff"/><style xmlns="" type="text/css" id="igtranslator-color"/></svg>
-            </a>
-         {{/if}}
-         {{#if @config.custom.socialcodeberg}}
-            <a href="{{@config.custom.socialcodeberg}}" aria-label="codeberg" class="tltp tltp--top">
-               <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333335" version="1.1" id="svg1468" sodipodi:docname="codeberg-logo_icon_blue.svg" inkscape:version="1.2-alpha1 (b6a15bb, 2022-02-23)" inkscape:export-filename="/home/mray/Projects/Codeberg/logo/icon/png/codeberg-logo_icon_blue.png" inkscape:export-xdpi="384" inkscape:export-ydpi="384" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
-               <title id="title16">Codeberg logo</title>
-               <defs id="defs1462">
-                  <linearGradient xlink:href="#linearGradient6924" id="linearGradient6918" x1="42519.285" y1="-7078.7891" x2="42575.336" y2="-6966.9307" gradientUnits="userSpaceOnUse"/>
-                  <linearGradient id="linearGradient6924">
-                     <stop style="stop-color:#2185d0;stop-opacity:0" offset="0" id="stop6920"/>
-                     <stop id="stop6926" offset="0.49517274" style="stop-color:#2185d0;stop-opacity:0.48923996"/>
-                     <stop style="stop-color:#2185d0;stop-opacity:0.63279623" offset="1" id="stop6922"/>
-                  </linearGradient>
-                  <linearGradient xlink:href="#linearGradient6924-6" id="linearGradient6918-3" x1="42519.285" y1="-7078.7891" x2="42575.336" y2="-6966.9307" gradientUnits="userSpaceOnUse"/>
-                  <linearGradient id="linearGradient6924-6">
-                     <stop style="stop-color:#2185d0;stop-opacity:0;" offset="0" id="stop6920-7"/>
-                     <stop id="stop6926-5" offset="0.49517274" style="stop-color:#2185d0;stop-opacity:0.30000001;"/>
-                     <stop style="stop-color:#2185d0;stop-opacity:0.30000001;" offset="1" id="stop6922-3"/>
-                  </linearGradient>
-               </defs>
-               <sodipodi:namedview showborder="false" id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="22.627417" inkscape:cx="12.948893" inkscape:cy="12.661631" inkscape:document-units="px" inkscape:current-layer="svg1468" inkscape:document-rotation="0" showgrid="false" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" units="px" inkscape:snap-global="false" inkscape:snap-page="true" showguides="false" inkscape:window-width="1531" inkscape:window-height="873" inkscape:window-x="69" inkscape:window-y="27" inkscape:window-maximized="1" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1">
-                  <inkscape:grid type="xygrid" id="grid2067"/>
-               </sodipodi:namedview>
-               <metadata id="metadata1465">
-                  <rdf:RDF>
-                     <cc:Work rdf:about="">
-                     <dc:format>image/svg+xml</dc:format>
-                     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-                     <dc:title>Codeberg logo</dc:title>
-                     <cc:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
-                     <dc:creator>
-                        <cc:Agent>
-                           <dc:title>Robert Martinez</dc:title>
-                        </cc:Agent>
-                     </dc:creator>
-                     <dc:rights>
-                        <cc:Agent>
-                           <dc:title>Codeberg and the Codeberg Logo are trademarks of Codeberg e.V.</dc:title>
-                        </cc:Agent>
-                     </dc:rights>
-                     <dc:date>2020-04-09</dc:date>
-                     <dc:publisher>
-                        <cc:Agent>
-                           <dc:title>Codeberg e.V.</dc:title>
-                        </cc:Agent>
-                     </dc:publisher>
-                     <dc:source>codeberg.org</dc:source>
-                     </cc:Work>
-                     <cc:License rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
-                     <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
-                     <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
-                     <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
-                     </cc:License>
-                  </rdf:RDF>
-               </metadata>
-               <g id="g370484" inkscape:label="logo" transform="matrix(0.06551432,0,0,0.06551432,-2.232417,-1.431776)">
-                  <path id="path6733-5" style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:url(#linearGradient6918-3);fill-opacity:1;stroke:none;stroke-width:3.67846;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000;stop-opacity:1" d="m 42519.285,-7078.7891 a 0.76086879,0.56791688 0 0 0 -0.738,0.6739 l 33.586,125.8886 a 87.182358,87.182358 0 0 0 39.381,-33.7636 l -71.565,-92.5196 a 0.76086879,0.56791688 0 0 0 -0.664,-0.2793 z" transform="matrix(0.37058478,0,0,0.37058478,-15690.065,2662.0533)" inkscape:label="berg"/>
-                  <path id="path360787" style="opacity:1;fill:#2185d0;fill-opacity:1;stroke-width:17.0055;paint-order:markers fill stroke;stop-color:#000000" d="m 11249.461,-1883.6961 c -12.74,0 -23.067,10.3275 -23.067,23.0671 0,4.3335 1.22,8.5795 3.522,12.2514 l 19.232,-24.8636 c 0.138,-0.1796 0.486,-0.1796 0.624,0 l 19.233,24.8646 c 2.302,-3.6721 3.523,-7.9185 3.523,-12.2524 0,-12.7396 -10.327,-23.0671 -23.067,-23.0671 z" sodipodi:nodetypes="sccccccs" inkscape:label="sky" transform="matrix(1.4006354,0,0,1.4006354,-15690.065,2662.0533)"/>
-               </g>
-               </svg>
-            </a>
-         {{/if}}
-         {{#if @config.custom.socialmatrix}}
-            <a href="{{@config.custom.socialmatrix}}" aria-label="matrix" class="tltp tltp--top">
-               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="96" height="96" viewBox="0,0,256,256"
-               style="fill:#FD7E14;">
-               <g transform="translate(-40.96,-40.96) scale(1.32,1.32)"><g fill="#ff0231" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M3,4v16h3v-2h-1v-12h1v-2zM18,4v2h1v12h-1v2h3v-16zM14.75195,8.42383c-0.49871,-0.01007 -1.00238,0.1135 -1.40625,0.39063c-0.26,0.179 -0.48323,0.40795 -0.74023,0.62695c-0.391,-0.777 -1.0973,-0.98405 -1.9043,-0.99805c-0.818,-0.013 -1.45153,0.35716 -2.01953,1.03516v-0.83789h-1.68164v6.34766h1.78711c0,0 -0.00305,-2.37969 0.00195,-3.55469c0.001,-0.209 0.01169,-0.42195 0.05469,-0.62695c0.132,-0.628 0.67045,-1.01489 1.31445,-0.96289c0.613,0.05 0.89187,0.38342 0.92188,1.10742c0.005,0.126 0.00781,4.0332 0.00781,4.0332h1.81055c0,0 -0.00709,-2.47148 0.00391,-3.52148c0.003,-0.271 0.0297,-0.54855 0.0957,-0.81055c0.148,-0.588 0.62544,-0.87569 1.27344,-0.80469c0.572,0.062 0.85839,0.378 0.90039,1v4.15234h1.80273c0,0 0.029,-3.11956 0,-4.60156c-0.006,-0.303 -0.10323,-0.62734 -0.24023,-0.90234c-0.3325,-0.66688 -1.15124,-1.05549 -1.98242,-1.07227z"></path></g></g></g>
-               </svg>
-            </a>
-         {{/if}}
-               </div>
-            {{/if}}
-
-            {{#if @config.custom.copyright}}
-               <div class="box copyright">
-                  {{@config.custom.copyrightText}}
-               </div>
+               <section class="box box--social">
+                  <h3 class="box__title">شبکه‌های آزاد</h3>
+                  <nav class="follow" aria-label="شبکه‌های اجتماعی آزاد">
+                     {{#if @config.custom.socialMastadon}}
+                        <a href="{{@config.custom.socialMastadon}}" rel="me noopener" target="_blank" aria-label="Mastodon" title="Mastodon" class="social-link">
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.271-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.381 5.59h-2.085V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.07V9.364c0-1.28-.502-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H5.982V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                     {{#if @config.custom.socialpixelfed}}
+                        <a href="{{@config.custom.socialpixelfed}}" rel="me noopener" target="_blank" aria-label="Pixelfed" title="Pixelfed" class="social-link">
+                           {{! Official monochrome Pixelfed mark (Simple Icons) }}
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M12 24C5.3726 24 0 18.6274 0 12S5.3726 0 12 0s12 5.3726 12 12-5.3726 12-12 12m-.9526-9.3802h2.2014c2.0738 0 3.7549-1.6366 3.7549-3.6554S15.3226 7.309 13.2488 7.309h-3.1772c-1.1964 0-2.1663.9442-2.1663 2.1089v8.208z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                     {{#if @config.custom.socialcodeberg}}
+                        <a href="{{@config.custom.socialcodeberg}}" rel="me noopener" target="_blank" aria-label="Codeberg" title="Codeberg" class="social-link">
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M11.955.49A12 12 0 0 0 0 12.49a12 12 0 0 0 1.832 6.373L11.838 5.928a.187.14 0 0 1 .324 0l10.006 12.935A12 12 0 0 0 24 12.49a12 12 0 0 0-12-12 12 12 0 0 0-.045 0zm.375 6.467 4.416 16.553a12 12 0 0 0 5.137-4.213z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                     {{#if @config.custom.socialmatrix}}
+                        <a href="{{@config.custom.socialmatrix}}" rel="me noopener" target="_blank" aria-label="Matrix" title="Matrix" class="social-link">
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.404 6.638V9.18h.033c.309-.561.732-.996 1.268-1.306.537-.309 1.151-.464 1.844-.464.692 0 1.317.14 1.875.42.559.28.991.703 1.297 1.27.306-.415.717-.747 1.233-.997.516-.249 1.104-.374 1.765-.374.84 0 1.528.18 2.063.54.535.36.935.88 1.2 1.56.265.68.398 1.49.398 2.43v5.774h-2.42v-5.19c0-.68-.077-1.2-.23-1.56-.154-.36-.46-.54-.92-.54-.4 0-.71.13-.93.39-.22.26-.33.65-.33 1.17v5.73h-2.41v-5.19c0-.68-.08-1.2-.24-1.56-.16-.36-.47-.54-.93-.54-.42 0-.74.15-.96.45-.22.3-.33.75-.33 1.35v5.49H8.036V7.188zm14.684 16.262V.55H21.072V0H24v24h-2.28z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                     {{#if @config.custom.socialTwitter}}
+                        <a href="{{@config.custom.socialTwitter}}" rel="noopener" target="_blank" aria-label="X / Twitter" title="X" class="social-link">
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                     {{#if @config.custom.socialLinkedin}}
+                        <a href="{{@config.custom.socialLinkedin}}" rel="noopener" target="_blank" aria-label="LinkedIn" title="LinkedIn" class="social-link">
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                     {{#if @config.custom.socialInstagram}}
+                        <a href="{{@config.custom.socialInstagram}}" rel="noopener" target="_blank" aria-label="Instagram" title="Instagram" class="social-link">
+                           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                           </svg>
+                        </a>
+                     {{/if}}
+                  </nav>
+               </section>
             {{/if}}
 
          </div>
       </div>
-   </div>
+   </aside>
 {{/checkIfAny}}

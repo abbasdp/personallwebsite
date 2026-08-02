@@ -1,6 +1,6 @@
 {{> head}}
 {{> navbar}}
-<main class="main post">
+<main class="main post" id="main-content">
    {{#if @customHTML.beforePost}}
       <div class="banner">
          <div class="main__inner">
@@ -9,7 +9,7 @@
       </div>
    {{/if}}
    {{#post}}
-      <article class="content">
+      <article class="content" itemscope itemtype="https://schema.org/BlogPosting">
          {{#featuredImage}}
             {{#if url}}
                <figure class="content__featured-image content__featured-image--attop">
@@ -21,8 +21,9 @@
                      {{ lazyload "eager" }}
                      height="{{height}}"
                      width="{{width}}"
-                     alt="{{alt}}"
-                     aria-describedby="image-caption">
+                     alt="{{#if alt}}{{alt}}{{else}}{{../title}}{{/if}}"
+                     itemprop="image"
+                     {{#checkIfAny caption credits}}aria-describedby="image-caption"{{/checkIfAny}}>
                </figure>
             {{/if}}
          {{/featuredImage}}
@@ -99,7 +100,7 @@
 
                   {{#if @config.post.displayDate}}
                      <div class="content__date">
-                        <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}">
+                        <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" itemprop="datePublished">
                            {{#checkIf @config.custom.formatDate '!=' 'custom'}}
                               {{date createdAt @config.custom.formatDate}}
                            {{else}}
@@ -111,17 +112,18 @@
 
                </div>
             {{/checkIfAny}}
-             
+
             <header class="content__header">
-               <h1 class="content__title">{{title}}</h1>
+               <h1 class="content__title" itemprop="headline">{{title}}</h1>
                {{#if @config.post.displayPostLead}}
-                  <p class="content__lead">{{@config.post.displayPostLead}}</p>
+                  <p class="content__lead" itemprop="description">{{@config.post.displayPostLead}}</p>
                {{/if}}
             </header>
 
-            <div class="content__entry">
+            <div class="content__entry" itemprop="articleBody">
                {{{text}}}
-            </div>     
+            </div>
+
 
             {{#checkIfAny @config.post.displayUpdatedDate @config.post.displayShareButtons}}
                <footer class="content__footer">
@@ -129,7 +131,7 @@
                   {{#if @config.post.displayUpdatedDate}}
                      <div class="content__last-updated">
                         {{ translate 'post.lastUpdatedDate' }}
-                        <time datetime="{{date modifiedAt 'YYYY-MM-DDTHH:mm'}}">
+                        <time datetime="{{date modifiedAt 'YYYY-MM-DDTHH:mm'}}" itemprop="dateModified">
                            {{#checkIf @config.custom.formatDate '!=' 'custom'}}
                               {{date modifiedAt @config.custom.formatDate}}
                            {{else}}
@@ -161,7 +163,7 @@
          {{#if ../relatedPosts}}
             <div class="content__section post__related">
                <div class="main__inner">
-                  <h3 class="content__section__title">{{ translate 'post.relatedPosts' }}</h3>
+                  <h2 class="content__section__title">{{ translate 'post.relatedPosts' }}</h2>
                   <div class="post__related__wrap">
                      {{#each ../relatedPosts}}
                         <article class="c-card">

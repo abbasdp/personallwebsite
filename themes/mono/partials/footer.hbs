@@ -1,9 +1,17 @@
+   {{#if @config.custom.copyright}}
+      <footer class="site-footer" role="contentinfo">
+         <div class="site-footer__inner">
+            {{{@config.custom.copyrightText}}}
+         </div>
+      </footer>
+   {{/if}}
 </div>
 
 <script defer src="{{js "scripts.min.js"}}"></script>
+<script defer src="{{js "libre.js"}}"></script>
 
 {{#if @config.site.mediaLazyLoad}}
-    <script>        
+    <script>
         var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {
             if (images[i].complete) {

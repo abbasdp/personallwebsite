@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="msvalidate.01" content="856949C9A8BB83C8A707E0D2208E5FAA" />
+        <meta name="msvalidate.01" content="856949C9A8BB83C8A707E0D2208E5FAA">
+        <meta name="color-scheme" content="light dark">
         {{#if title}}
             <title>{{title}}</title>
         {{else}}
@@ -16,8 +17,12 @@
         {{canonicalLink}}
         {{feedLink}}
         {{socialMetaTags}}
-		{{#if @config.custom.faviconUpload}}
-	        <link rel="shortcut icon" href="{{@config.custom.faviconUpload}}" type="{{@config.custom.faviconExtension}}" />
+        <meta property="og:locale" content="fa_IR">
+        <meta name="author" content="عباس داورپناه">
+        {{#if @config.custom.faviconUpload}}
+            <link rel="shortcut icon" href="{{@config.custom.faviconUpload}}" type="{{@config.custom.faviconExtension}}">
+            <link rel="icon" href="{{@config.custom.faviconUpload}}" type="{{@config.custom.faviconExtension}}">
+            <link rel="apple-touch-icon" href="{{@config.custom.faviconUpload}}">
         {{/if}}
         {{#if @pagination}}
             {{#if @pagination.previousPage}}
@@ -27,18 +32,25 @@
                 <link rel="next" href="{{@pagination.nextPageUrl }}">
             {{/if}}
         {{/if}}
-        {{> fonts}}         
+        <link rel="me" href="https://techhub.social/@abbas_dp">
+        <link rel="me" href="https://codeberg.org/abbasdp">
+        <link rel="me" href="https://matrix.to/#/@abbas_dp:matrix.org">
+        {{> fonts}}
         <link rel="stylesheet" href="{{css "style.css" }}">
-        {{jsonLD}}      
+        <link rel="stylesheet" href="{{css "libre.css" }}">
+        <meta name="theme-color" content="#A33B2D" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#161411" media="(prefers-color-scheme: dark)">
+        {{jsonLD}}
         <noscript>
             <style>
                 img[loading] {
                     opacity: 1;
                 }
             </style>
-        </noscript>	    
+        </noscript>
         {{{@headCustomCode}}}
     </head>
     <body class="{{#is "index"}}home-template{{/is}}{{#is "index-pagination"}} pagination-template{{/is}}{{#is "tag"}}tag-template{{/is}}{{#is "tag-pagination"}} pagination-template{{/is}}{{#is "tags"}}tags-template{{/is}}{{#is "page"}}page-template{{/is}}{{#is "post"}}post-template{{/is}}{{#is "author"}}author-template{{/is}}{{#is "author-pagination"}} pagination-template{{/is}}{{#is "404"}}error-template{{/is}}{{#is "search"}}search-template{{/is}}">
+        <a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
         {{{@bodyCustomCode}}}
-        <div class="container{{#checkIfNone @config.custom.featured @config.custom.authors @config.custom.tags @config.custom.newsletter @config.custom.socialButtons @config.custom.copyright}} container--nosidebar{{/checkIfNone}}">
+        <div class="container{{#checkIfNone @config.custom.featured @config.custom.authors @config.custom.tags @config.custom.newsletter @config.custom.socialButtons}} container--nosidebar{{/checkIfNone}}">

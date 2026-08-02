@@ -1,54 +1,54 @@
 {
 	"partials": {
 
-		"menu": {			
-			"label": "Menu"
+		"menu": {
+			"label": "منو"
 		},
 
 		"sidebar": {
 			"featured": "پست‌های برگزیده",
-			"authors": "Authors",
-			"authorsPost": "Post: ",
-			"tags": "برچسب‌های پیشنهادی",
-			"newsletter": "Subscribe to Mono",
-			"newsletterDesc": "Sign up to receive email updates and to hear what's going on with us!"
+			"authors": "نویسندگان",
+			"authorsPost": "پست: ",
+			"tags": "برچسب‌ها",
+			"newsletter": "خبرنامه",
+			"newsletterDesc": "برای دریافت به‌روزرسانی‌ها عضو شوید."
 		},
 
 		"pagination": {
 			"prev": "قبلی",
-			"next": "بغدی"
+			"next": "بعدی"
 		},
 
 		"shareButtons": {
-			"shareWith": "انتشار در",
-			"shareWithFacebook": "Facebook",
-			"shareWithTwitter": "Twitter",
-			"shareWithPinterest": "Pinterest",
-			"shareWithMix": "Mix",
-			"shareWithLinkedIn": "LinkedIn",
-			"shareWithBuffer": "Buffer",
-			"shareWithWhatsApp": "WhatsApp",
-			"shareWithPocket": "Pocket"
-		} 
-	},	
+			"shareWith": "هم‌رسانی",
+			"shareWithFacebook": "فیسبوک",
+			"shareWithTwitter": "توییتر",
+			"shareWithPinterest": "پینترست",
+			"shareWithMix": "میکس",
+			"shareWithLinkedIn": "لینکدین",
+			"shareWithBuffer": "بافر",
+			"shareWithWhatsApp": "واتساپ",
+			"shareWithPocket": "پاکت"
+		}
+	},
 
 	"post": {
-		"publishedIn": "منتشر شده در تاریخ",
-		"relatedPosts": "‌های اخیر",
-		"lastUpdatedDate": "این پست آپدیت شده در تاریخ"
+		"publishedIn": "منتشرشده در",
+		"relatedPosts": "مطالب مرتبط",
+		"lastUpdatedDate": "آخرین به‌روزرسانی:"
    },
 
 	"page": {
-		"childPages": "زیر صفحه"
+		"childPages": "زیرصفحه"
   },
 
 	"tags": {
-		"tagsPageTitle": "برچسب",
-		"description": "Collection of all %s tags"
+		"tagsPageTitle": "برچسب‌ها",
+		"description": "مجموعهٔ %s برچسب"
 	},
-	
+
    "author": {
-	   "visitWebsite": "Visit my website"
+	   "visitWebsite": "مشاهدهٔ وب‌سایت"
    },
 	"error": {
 		"goHome": "بازگشت به خانه"
