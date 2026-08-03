@@ -1164,7 +1164,7 @@ textarea {
   color: var(--accent-medium);
 }
 .c-card__meta > * + *::before {
-  content: "·";
+  content: "#";
   margin-right: 10px;
 }
 .c-card__title {
@@ -1519,7 +1519,7 @@ textarea {
 
 .msg {
   background-color: var(--color-lighter);
-  border-left: 3px solid;
+  border-right: 3px solid;
   font-size: 1.066666667rem;
   padding: calc(var(--baseline) * 5) calc(var(--baseline) * 5) calc(var(--baseline) * 5) calc(var(--baseline) * 8);
 }
