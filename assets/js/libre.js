@@ -168,9 +168,25 @@
     onScroll();
   }
 
+  function revealLazyImages() {
+    var images = document.querySelectorAll('img[loading]');
+    for (var i = 0; i < images.length; i++) {
+      (function (img) {
+        function show() { img.classList.add('is-loaded'); }
+        if (img.complete) {
+          show();
+        } else {
+          img.addEventListener('load', show);
+          img.addEventListener('error', show);
+        }
+      })(images[i]);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initJalaliDates();
     initProgress();
     initTop();
+    revealLazyImages();
   });
 })();
