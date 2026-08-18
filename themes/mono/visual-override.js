@@ -16,7 +16,7 @@ var generateOverride = function (params) {
 	if (params.lazyLoadEffect === 'fadein') {
 		output += `
 		img[loading] {
-			opacity: 0;
+			opacity: 1;
 		}
 
 		img.is-loaded {

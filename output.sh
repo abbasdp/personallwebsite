@@ -1,4 +1,8 @@
 #!/usr/bin/bash
+set -euo pipefail
+cd "$(dirname "$0")"
+./ensure-responsive-images.sh
+
 cd ../output
 if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
     echo "this directory not versionn control"

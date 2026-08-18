@@ -1148,6 +1148,15 @@ a.c-card-tag:hover {
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
 }
+
+/* Publii fade-in starts images at opacity:0. If srcset 404s, the
+   load event never fires and photos stay invisible. Keep them visible. */
+img[loading] {
+  opacity: 1;
+}
+img.is-loaded {
+  opacity: 1;
+}
 .content__entry hr {
   border: none;
   border-top: 1px solid var(--line);
