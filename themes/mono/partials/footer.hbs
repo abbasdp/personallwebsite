@@ -2,6 +2,12 @@
       <footer class="site-footer" role="contentinfo">
          <div class="site-footer__inner">
             {{{@config.custom.copyrightText}}}
+            {{#if @config.custom.socialButtons}}
+               <div class="site-footer__social">
+                  <p class="site-footer__social-label">شبکه‌های آزاد</p>
+                  {{> social class="follow--footer"}}
+               </div>
+            {{/if}}
          </div>
       </footer>
    {{/if}}

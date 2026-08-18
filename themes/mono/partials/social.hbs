@@ -1,0 +1,76 @@
+<nav class="follow{{#if class}} {{class}}{{/if}}" aria-label="شبکه‌های اجتماعی آزاد">
+   {{#if @config.custom.socialMastadon}}
+      <a href="{{@config.custom.socialMastadon}}" rel="me noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.271-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.381 5.59h-2.085V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.07V9.364c0-1.28-.502-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H5.982V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">ماستودون</span>
+            <span class="social-link__id" dir="ltr">@abbas_dp</span>
+         </span>
+      </a>
+   {{/if}}
+   {{#if @config.custom.socialpixelfed}}
+      <a href="{{@config.custom.socialpixelfed}}" rel="me noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M12 24C5.3726 24 0 18.6274 0 12S5.3726 0 12 0s12 5.3726 12 12-5.3726 12-12 12m-.9526-9.3802h2.2014c2.0738 0 3.7549-1.6366 3.7549-3.6554S15.3226 7.309 13.2488 7.309h-3.1772c-1.1964 0-2.1663.9442-2.1663 2.1089v8.208z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">پیکسل‌فد</span>
+            <span class="social-link__id" dir="ltr">davarpanah</span>
+         </span>
+      </a>
+   {{/if}}
+   {{#if @config.custom.socialcodeberg}}
+      <a href="{{@config.custom.socialcodeberg}}" rel="me noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M11.955.49A12 12 0 0 0 0 12.49a12 12 0 0 0 1.832 6.373L11.838 5.928a.187.14 0 0 1 .324 0l10.006 12.935A12 12 0 0 0 24 12.49a12 12 0 0 0-12-12 12 12 0 0 0-.045 0zm.375 6.467 4.416 16.553a12 12 0 0 0 5.137-4.213z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">کدبرگ</span>
+            <span class="social-link__id" dir="ltr">abbasdp</span>
+         </span>
+      </a>
+   {{/if}}
+   {{#if @config.custom.socialmatrix}}
+      <a href="{{@config.custom.socialmatrix}}" rel="me noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.404 6.638V9.18h.033c.309-.561.732-.996 1.268-1.306.537-.309 1.151-.464 1.844-.464.692 0 1.317.14 1.875.42.559.28.991.703 1.297 1.27.306-.415.717-.747 1.233-.997.516-.249 1.104-.374 1.765-.374.84 0 1.528.18 2.063.54.535.36.935.88 1.2 1.56.265.68.398 1.49.398 2.43v5.774h-2.42v-5.19c0-.68-.077-1.2-.23-1.56-.154-.36-.46-.54-.92-.54-.4 0-.71.13-.93.39-.22.26-.33.65-.33 1.17v5.73h-2.41v-5.19c0-.68-.08-1.2-.24-1.56-.16-.36-.47-.54-.93-.54-.42 0-.74.15-.96.45-.22.3-.33.75-.33 1.35v5.49H8.036V7.188zm14.684 16.262V.55H21.072V0H24v24h-2.28z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">ماتریکس</span>
+            <span class="social-link__id" dir="ltr">@abbas_dp</span>
+         </span>
+      </a>
+   {{/if}}
+   {{#if @config.custom.socialTwitter}}
+      <a href="{{@config.custom.socialTwitter}}" rel="noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">اکس</span>
+         </span>
+      </a>
+   {{/if}}
+   {{#if @config.custom.socialLinkedin}}
+      <a href="{{@config.custom.socialLinkedin}}" rel="noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">لینکدین</span>
+         </span>
+      </a>
+   {{/if}}
+   {{#if @config.custom.socialInstagram}}
+      <a href="{{@config.custom.socialInstagram}}" rel="noopener" target="_blank" class="social-link">
+         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+         </svg>
+         <span class="social-link__text">
+            <span class="social-link__name">اینستاگرام</span>
+         </span>
+      </a>
+   {{/if}}
+</nav>
