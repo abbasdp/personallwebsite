@@ -1,0 +1,112 @@
+/* Isolated from libre.css so GitHub/Cloudflare cache cannot keep old icon-only rules. */
+
+.box--social .box__title {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 0.82rem !important;
+}
+
+.box--social .follow,
+.follow.follow--list,
+.follow.follow--footer {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 0.4rem !important;
+  margin-top: 0 !important;
+  width: 100% !important;
+}
+
+.follow.follow--footer {
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+.box--social .social-link,
+.follow--list .social-link,
+.follow--footer .social-link,
+a.social-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.7rem !important;
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  padding: 0.5rem 0.65rem !important;
+  border-radius: 4px !important;
+  background: var(--paper, #f7f4ef) !important;
+  border: 1px solid var(--line, #e4ddd3) !important;
+  color: var(--ink, #1c1917) !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+
+.follow--footer .social-link {
+  width: auto !important;
+  min-width: 10rem !important;
+  flex: 0 1 10.5rem;
+}
+
+a.social-link:hover {
+  border-color: var(--mark, #a33b2d) !important;
+  color: var(--mark, #a33b2d) !important;
+  background: var(--mark-soft, hsla(8, 55%, 40%, 0.08)) !important;
+  transform: none !important;
+}
+
+.box--social .social-link svg,
+.follow--list .social-link svg,
+.follow--footer .social-link svg,
+a.social-link svg {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  max-width: 1.2rem !important;
+  max-height: 1.2rem !important;
+  flex: 0 0 1.2rem !important;
+  fill: currentColor !important;
+}
+
+.social-link__text {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.1rem !important;
+  min-width: 0 !important;
+  line-height: 1.25 !important;
+}
+
+.social-link__name {
+  display: block !important;
+  font-size: 0.88rem !important;
+  font-weight: 650 !important;
+  white-space: nowrap;
+}
+
+.social-link__id {
+  display: block !important;
+  font-size: 0.72rem !important;
+  color: var(--muted, #6b6560) !important;
+  font-weight: 400 !important;
+  direction: ltr !important;
+  unicode-bidi: isolate;
+}
+
+.site-footer__social {
+  margin-top: 1.15rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--line, #e4ddd3);
+}
+
+.site-footer__social-label {
+  margin: 0 0 0.65rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  color: var(--ink-soft, #3f3a36) !important;
+}
