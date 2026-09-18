@@ -1,0 +1,36 @@
+{% extends "journal/base.html" %}
+{% load jalali %}
+
+{% block title %}{{ post.title }} — {{ site.name }}{% endblock %}
+
+{% block content %}
+<article class="piece">
+  <header class="piece__head">
+    <p class="meta">
+      {% for tag in post.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}
+      {% if post.tags.all %} · {% endif %}
+      <time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|jalali }}</time>
+    </p>
+    <h1>{{ post.title }}</h1>
+  </header>
+  {% if post.cover %}
+  <figure class="piece__cover">
+    <img src="{{ post.cover.url }}" alt="{{ post.cover_alt|default:post.title }}">
+    {% if post.cover_caption %}<figcaption>{{ post.cover_caption }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+  <div class="piece__body">
+    {{ post.body|safe }}
+  </div>
+</article>
+{% if others %}
+<nav class="more" aria-label="دیگر نوشته‌ها">
+  <h2>دیگر نوشته‌ها</h2>
+  <ul>
+    {% for item in others %}
+    <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
+{% endblock %}

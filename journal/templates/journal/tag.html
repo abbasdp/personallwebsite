@@ -1,0 +1,23 @@
+{% extends "journal/base.html" %}
+{% load jalali %}
+
+{% block title %}{{ tag.name }} — {{ site.name }}{% endblock %}
+
+{% block content %}
+<section class="writing">
+  <header class="writing__head">
+    <h2>{{ tag.name }}</h2>
+  </header>
+  {% for post in posts %}
+  <article class="card">
+    <div class="card__body">
+      <p class="meta"><time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|jalali }}</time></p>
+      <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+      {% if post.excerpt %}<p>{{ post.excerpt }}</p>{% endif %}
+    </div>
+  </article>
+  {% empty %}
+  <p>نوشته‌ای با این برچسب نیست.</p>
+  {% endfor %}
+</section>
+{% endblock %}

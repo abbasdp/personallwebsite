@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "sheklgiri-fingercoder",
+    "title": "شکل‌گیری جامعه فینگرکدر",
+    "excerpt": "شکل‌گیری فینگرکدر نقطهٔ شروع ماجراجویی‌های رویدادی من است. از جمعهٔ بلوار سلامت تا نشست کدهای انگشتی در شیراز.",
+    "html": "sheklgiri-fingercoder.html",
+    "cover": "posts/17/first-session-cake.jpg",
+    "cover_alt": "هفت نفر پشت میز جلسه با کیک شمع صفر و یک و نوشتهٔ اولین گردهمایی فینگرکدر در شیراز روی وایت‌برد",
+    "cover_caption": "اولین گردهمایی فینگرکدر در شیراز",
+    "tags": [{"name": "فینگرکدر", "slug": "fingercoder"}, {"name": "رویداد", "slug": "event"}],
+    "published": true,
+    "featured": false,
+    "published_at": "2026-08-16T21:39:00+03:30"
+  },
+  {
+    "slug": "bandali",
+    "title": "آشنایی من با امین بندعلی",
+    "excerpt": "نحوهٔ آشنایی من با امین بندعلی برمی‌گردد به جشن چهل‌سالگی نرم‌افزار آزاد.",
+    "html": "bandali.html",
+    "cover": "posts/14/photo_2025-11-30_20-18-43.jpg",
+    "cover_alt": "گفتگوی تصویری عباس داورپناه و امین بندعلی",
+    "cover_caption": "",
+    "tags": [{"name": "نرم‌افزار آزاد", "slug": "freesoftware"}],
+    "published": true,
+    "featured": true,
+    "published_at": "2025-11-28T18:00:00+03:30"
+  },
+  {
+    "slug": "whoami",
+    "title": "من کی هستم",
+    "excerpt": "علاقه‌ام به دنیای نرم‌افزار آزاد از وقتی جدی شد که راهبر شیرازلاگ شدم.",
+    "html": "whoami.html",
+    "cover": "posts/10/photo_2025-10-20_02-18-57.jpg",
+    "cover_alt": "کنار دریا، با لوگوی چهل‌سالگی بنیاد نرم‌افزار آزاد",
+    "cover_caption": "",
+    "tags": [{"name": "رویداد", "slug": "event"}, {"name": "نرم‌افزار آزاد", "slug": "freesoftware"}],
+    "published": true,
+    "featured": false,
+    "published_at": "2025-10-19T18:46:00+03:30"
+  },
+  {
+    "slug": "doctorfallahi",
+    "title": "دکتر محمدرضا فلاحی",
+    "excerpt": "روایت شتابزدگی و بی‌توجهی در یک مطب؛ تجربه‌ای که باید نوشته می‌شد.",
+    "html": "doctorfallahi.html",
+    "cover": "posts/16/photo_2025-12-27_21-30-45.jpg",
+    "cover_alt": "تابلوی جلوی مطب دکتر محمدرضا فلاحی",
+    "cover_caption": "",
+    "tags": [{"name": "عمومی", "slug": "general"}],
+    "published": false,
+    "featured": false,
+    "published_at": "2025-12-27T21:30:00+03:30"
+  }
+]

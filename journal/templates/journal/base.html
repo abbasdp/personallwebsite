@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="{% static 'journal/img/abbasdp.png' %}" type="image/png">
+  <link rel="stylesheet" href="{% static 'journal/css/site.css' %}">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("abbas-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">پرش به محتوا</a>
+  <header class="top">
+    <a class="top__name" href="{% url 'home' %}">{{ site.name }}</a>
+    <nav class="top__nav">
+      <a href="{% url 'home' %}#writing">نوشته‌ها</a>
+      {% if site.gnu_url %}<a href="{{ site.gnu_url }}" rel="noopener" target="_blank">نرم‌افزار آزاد</a>{% endif %}
+      <button class="theme" type="button" data-theme-toggle aria-label="تغییر تم">☾</button>
+    </nav>
+  </header>
+  <main id="main">{% block content %}{% endblock %}</main>
+  <footer class="foot">
+    <p>محتوا تحت مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" rel="license noopener" target="_blank">CC BY-SA 4.0</a></p>
+    <p>
+      {% if site.gnu_url %}<a href="{{ site.gnu_url }}" rel="noopener" target="_blank">نرم‌افزار آزاد چیست؟</a>{% endif %}
+      {% if site.gnu_url %} · {% endif %}
+      <a href="https://www.fsf.org/" rel="noopener" target="_blank">بنیاد نرم‌افزار آزاد</a>
+    </p>
+    <nav class="foot__social" aria-label="شبکه‌های آزاد">
+      {% if site.mastodon %}<a href="{{ site.mastodon }}" rel="me noopener" target="_blank">ماستودون</a>{% endif %}
+      {% if site.pixelfed %}<a href="{{ site.pixelfed }}" rel="me noopener" target="_blank">پیکسل‌فد</a>{% endif %}
+      {% if site.codeberg %}<a href="{{ site.codeberg }}" rel="me noopener" target="_blank">کدبرگ</a>{% endif %}
+      {% if site.matrix %}<a href="{{ site.matrix }}" rel="me noopener" target="_blank">ماتریکس</a>{% endif %}
+    </nav>
+  </footer>
+  <script>
+    (function () {
+      var root = document.documentElement, key = "abbas-theme";
+      function apply(theme) {
+        root.setAttribute("data-theme", theme);
+        try { localStorage.setItem(key, theme); } catch (e) {}
+        var btn = document.querySelector("[data-theme-toggle]");
+        if (btn) btn.textContent = theme === "dark" ? "☀︎" : "☾";
+      }
+      var saved = null;
+      try { saved = localStorage.getItem(key); } catch (e) {}
+      if (saved === "light" || saved === "dark") apply(saved);
+      else apply(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-theme-toggle]");
+        if (!b) return;
+        apply(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+      });
+    })();
+  </script>
+</body>
+</html>

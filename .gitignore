@@ -1,3 +1,11 @@
-output.sh
-push.sh
-.deploy_counnter
+.venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+.secrets
+/data/
+/staticfiles/
+/media/
+*.log
+.DS_Store
