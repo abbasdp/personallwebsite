@@ -2,6 +2,7 @@
 {% load jalali %}
 
 {% block title %}{{ post.title }} — {{ site.name }}{% endblock %}
+{% block description %}{{ post.excerpt }}{% endblock %}
 
 {% block content %}
 <article class="piece">
@@ -19,16 +20,23 @@
     {% if post.cover_caption %}<figcaption>{{ post.cover_caption }}</figcaption>{% endif %}
   </figure>
   {% endif %}
-  <div class="piece__body">
+  <div class="prose">
     {{ post.body|safe }}
   </div>
 </article>
 {% if others %}
 <nav class="more" aria-label="دیگر نوشته‌ها">
   <h2>دیگر نوشته‌ها</h2>
-  <ul>
+  <ul class="list">
     {% for item in others %}
-    <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+    <li>
+      <article class="row">
+        <div class="row__copy">
+          <p class="meta"><time datetime="{{ item.published_at|date:'Y-m-d' }}">{{ item.published_at|jalali }}</time></p>
+          <h3><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+        </div>
+      </article>
+    </li>
     {% endfor %}
   </ul>
 </nav>

@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ site.intro }}{% endblock %}">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="{% static 'journal/img/abbasdp.png' %}" type="image/png">
   <link rel="stylesheet" href="{% static 'journal/css/site.css' %}">
@@ -20,27 +21,32 @@
 <body>
   <a class="skip" href="#main">پرش به محتوا</a>
   <header class="top">
-    <a class="top__name" href="{% url 'home' %}">{{ site.name }}</a>
-    <nav class="top__nav">
+    <a class="brand" href="{% url 'home' %}">{{ site.name }}</a>
+    <nav class="nav" aria-label="اصلی">
       <a href="{% url 'home' %}#writing">نوشته‌ها</a>
-      {% if site.gnu_url %}<a href="{{ site.gnu_url }}" rel="noopener" target="_blank">نرم‌افزار آزاد</a>{% endif %}
+      <a href="{% url 'post' 'whoami' %}">من کی هستم</a>
       <button class="theme" type="button" data-theme-toggle aria-label="تغییر تم">☾</button>
     </nav>
   </header>
   <main id="main">{% block content %}{% endblock %}</main>
   <footer class="foot">
-    <p>محتوا تحت مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" rel="license noopener" target="_blank">CC BY-SA 4.0</a></p>
-    <p>
-      {% if site.gnu_url %}<a href="{{ site.gnu_url }}" rel="noopener" target="_blank">نرم‌افزار آزاد چیست؟</a>{% endif %}
-      {% if site.gnu_url %} · {% endif %}
-      <a href="https://www.fsf.org/" rel="noopener" target="_blank">بنیاد نرم‌افزار آزاد</a>
-    </p>
-    <nav class="foot__social" aria-label="شبکه‌های آزاد">
-      {% if site.mastodon %}<a href="{{ site.mastodon }}" rel="me noopener" target="_blank">ماستودون</a>{% endif %}
-      {% if site.pixelfed %}<a href="{{ site.pixelfed }}" rel="me noopener" target="_blank">پیکسل‌فد</a>{% endif %}
-      {% if site.codeberg %}<a href="{{ site.codeberg }}" rel="me noopener" target="_blank">کدبرگ</a>{% endif %}
-      {% if site.matrix %}<a href="{{ site.matrix }}" rel="me noopener" target="_blank">ماتریکس</a>{% endif %}
-    </nav>
+    <div class="foot__grid">
+      <div>
+        <p class="foot__name">{{ site.name }}</p>
+        <p>{{ site.kicker }}</p>
+        <p>محتوا تحت <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" rel="license noopener" target="_blank">CC BY-SA 4.0</a></p>
+      </div>
+      <div>
+        {% if site.gnu_url %}<p><a href="{{ site.gnu_url }}" rel="noopener" target="_blank">نرم‌افزار آزاد چیست؟</a></p>{% endif %}
+        <p><a href="https://www.fsf.org/" rel="noopener" target="_blank">بنیاد نرم‌افزار آزاد</a></p>
+      </div>
+      <nav class="social" aria-label="شبکه‌های آزاد">
+        {% if site.mastodon %}<a href="{{ site.mastodon }}" rel="me noopener" target="_blank"><b>ماستودون</b><span dir="ltr">@abbas_dp</span></a>{% endif %}
+        {% if site.pixelfed %}<a href="{{ site.pixelfed }}" rel="me noopener" target="_blank"><b>پیکسل‌فد</b><span dir="ltr">davarpanah</span></a>{% endif %}
+        {% if site.codeberg %}<a href="{{ site.codeberg }}" rel="me noopener" target="_blank"><b>کدبرگ</b><span dir="ltr">abbasdp</span></a>{% endif %}
+        {% if site.matrix %}<a href="{{ site.matrix }}" rel="me noopener" target="_blank"><b>ماتریکس</b><span dir="ltr">@abbas_dp</span></a>{% endif %}
+      </nav>
+    </div>
   </footer>
   <script>
     (function () {

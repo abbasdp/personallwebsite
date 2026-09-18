@@ -10,7 +10,13 @@ def health(request):
 
 def home(request):
     posts = Post.objects.filter(published=True).prefetch_related("tags")
-    return render(request, "journal/home.html", {"posts": posts})
+    featured = posts.filter(featured=True).first() or posts.first()
+    rest = posts.exclude(pk=featured.pk) if featured else posts
+    return render(
+        request,
+        "journal/home.html",
+        {"featured": featured, "posts": rest},
+    )
 
 
 def post_detail(request, slug):

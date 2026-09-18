@@ -4,20 +4,29 @@
 {% block title %}{{ tag.name }} — {{ site.name }}{% endblock %}
 
 {% block content %}
-<section class="writing">
-  <header class="writing__head">
+<section class="feed">
+  <header class="feed__label">
     <h2>{{ tag.name }}</h2>
   </header>
-  {% for post in posts %}
-  <article class="card">
-    <div class="card__body">
-      <p class="meta"><time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|jalali }}</time></p>
-      <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-      {% if post.excerpt %}<p>{{ post.excerpt }}</p>{% endif %}
-    </div>
-  </article>
-  {% empty %}
-  <p>نوشته‌ای با این برچسب نیست.</p>
-  {% endfor %}
+  <ul class="list">
+    {% for post in posts %}
+    <li>
+      <article class="row">
+        <div class="row__copy">
+          <p class="meta"><time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|jalali }}</time></p>
+          <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+          {% if post.excerpt %}<p>{{ post.excerpt }}</p>{% endif %}
+        </div>
+        {% if post.cover %}
+        <a class="row__still" href="{{ post.get_absolute_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ post.cover.url }}" alt="">
+        </a>
+        {% endif %}
+      </article>
+    </li>
+    {% empty %}
+    <li><p>نوشته‌ای با این برچسب نیست.</p></li>
+    {% endfor %}
+  </ul>
 </section>
 {% endblock %}
