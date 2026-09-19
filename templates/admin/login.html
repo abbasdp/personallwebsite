@@ -1,0 +1,17 @@
+{% extends "admin_base.html" %}
+
+{% block title %}ورود · پنل مدیریت{% endblock %}
+
+{% block content %}
+<div class="admin-card admin-login">
+  <h1 class="admin-title">ورود به پنل مدیریت</h1>
+  <p class="admin-hint">برای مدیریت نوشته‌ها رمز عبور را وارد کنید.</p>
+  <form method="post" class="admin-form">
+    <label class="field">
+      <span>رمز عبور</span>
+      <input type="password" name="password" autocomplete="current-password" required autofocus />
+    </label>
+    <button type="submit" class="btn btn--primary">ورود</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}نوشته‌ها · {{ profile.name }}{% endblock %}
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": {{ (profile.name ~ ' — نوشته‌ها') | tojson }},
+  "url": "{{ canonical_base }}/posts",
+  "inLanguage": "fa-IR",
+  "blogPost": [
+    {% for post in posts %}{
+      "@type": "BlogPosting",
+      "headline": {{ post.title | tojson }},
+      "datePublished": "{{ post.date.isoformat() }}",
+      "url": "{{ canonical_base }}/posts/{{ post.slug }}"
+    }{{ "," if not loop.last }}{% endfor %}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="section section--page">
+  <div class="section__head reveal"><div><span class="section__index">✎</span><h2 class="section__title">نوشته‌ها</h2></div></div>
+  <p class="about__text reveal">یادداشت‌ها و مقاله‌ها درباره لینوکس، DevOps و نرم‌افزار آزاد.</p>
+
+  {% if posts %}
+  <div class="posts posts--list">
+    {% for post in posts %}
+    <a class="post-card post-card--wide reveal" href="{{ url_for('post_detail', slug=post.slug) }}" style="--i: {{ loop.index0 }}">
+      {% if post.cover %}<div class="post-card__cover"><img src="{{ post.cover }}" alt="{{ post.title }}" loading="lazy" /></div>{% endif %}
+      <div class="post-card__body">
+        <div class="post-card__meta">
+          <span class="post-card__date">{{ post.date_fa }}</span>
+          <span class="post-card__dot">·</span>
+          <span>{{ post.reading_time }}</span>
+        </div>
+        <h3 class="post-card__title">{{ post.title }}</h3>
+        <p class="post-card__summary">{{ post.summary }}</p>
+        <ul class="tags">{% for tag in post.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+        <span class="post-card__more">ادامه مطلب ←</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="about__text reveal">هنوز نوشته‌ای منتشر نشده.</p>
+  {% endif %}
+</section>
+{% endblock %}

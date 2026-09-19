@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} · {{ profile.name }}{% endblock %}
+
+{% block og_extra %}
+  <meta property="article:published_time" content="{{ seo.published }}" />
+  <meta property="article:author" content="{{ profile.name }}" />
+  {% for tag in post.tags %}<meta property="article:tag" content="{{ tag }}" />{% endfor %}
+{% endblock %}
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": {{ post.title | tojson }},
+      "description": {{ post.summary | tojson }},
+      "datePublished": "{{ seo.published }}",
+      "dateModified": "{{ seo.published }}",
+      "inLanguage": "fa-IR",
+      "author": {"@type": "Person", "name": {{ profile.name | tojson }}},
+      "publisher": {"@type": "Person", "name": {{ profile.name | tojson }}},
+      "keywords": {{ (post.tags | join('، ')) | tojson }},
+      "mainEntityOfPage": "{{ canonical_base }}{{ request.path }}"{% if post.cover %},
+      "image": "{{ canonical_base }}{{ post.cover }}"{% endif %}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "خانه", "item": "{{ canonical_base }}/"},
+        {"@type": "ListItem", "position": 2, "name": "نوشته‌ها", "item": "{{ canonical_base }}/posts"},
+        {"@type": "ListItem", "position": 3, "name": {{ post.title | tojson }}, "item": "{{ canonical_base }}{{ request.path }}"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<article class="section section--page article">
+  <a class="back-link reveal" href="{{ url_for('posts_index') }}">→ بازگشت به نوشته‌ها</a>
+  <header class="article__head reveal">
+    <div class="post-card__meta">
+      <span class="post-card__date">{{ post.date_fa }}</span>
+      <span class="post-card__dot">·</span>
+      <span>{{ post.reading_time }}</span>
+    </div>
+    <h1 class="article__title">{{ post.title }}</h1>
+    {% if post.summary %}<p class="article__summary">{{ post.summary }}</p>{% endif %}
+    <ul class="tags">{% for tag in post.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+  </header>
+
+  {% if post.cover %}
+  <figure class="article__cover reveal"><img src="{{ post.cover }}" alt="{{ post.title }}" loading="lazy" /></figure>
+  {% endif %}
+
+  <div class="prose reveal">
+    {{ post.html | safe }}
+  </div>
+
+  {% if post.source %}
+  <p class="article__source reveal">منتشرشده در <a href="{{ post.source }}" target="_blank" rel="noopener">abbasdp.ir</a> · مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+  {% endif %}
+</article>
+{% endblock %}

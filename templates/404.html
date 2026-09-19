@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}پیدا نشد · {{ profile.name }}{% endblock %}
+
+{% block content %}
+<section class="section section--page notfound">
+  <p class="notfound__code mono">۴۰۴</p>
+  <h1 class="section__title">این صفحه پیدا نشد</h1>
+  <p class="about__text">شاید نوشته‌ای که دنبالش بودید جابه‌جا شده باشد.</p>
+  <a class="btn btn--primary" href="{{ url_for('index') }}">بازگشت به خانه</a>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="admin-head">
+  <h1 class="admin-title">نوشته‌ها</h1>
+  <a class="btn btn--primary" href="{{ url_for('admin_new') }}">+ نوشته جدید</a>
+</div>
+
+{% if posts %}
+<div class="admin-table">
+  {% for post in posts %}
+  <div class="admin-row">
+    <div class="admin-row__main">
+      <span class="admin-row__title">{{ post.title }}</span>
+      <span class="admin-row__meta">{{ post.date_fa }} · {{ post.reading_time }} · <span class="mono" dir="ltr">{{ post.slug }}</span></span>
+    </div>
+    <div class="admin-row__actions">
+      <a class="btn btn--ghost btn--sm" href="{{ url_for('post_detail', slug=post.slug) }}" target="_blank">نما</a>
+      <a class="btn btn--ghost btn--sm" href="{{ url_for('admin_edit', slug=post.slug) }}">ویرایش</a>
+      <form method="post" action="{{ url_for('admin_delete', slug=post.slug) }}" onsubmit="return confirm('این نوشته حذف شود؟');">
+        <button type="submit" class="btn btn--danger btn--sm">حذف</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="admin-hint">هنوز نوشته‌ای نیست. با دکمه «نوشته جدید» اولین نوشته را بسازید.</p>
+{% endif %}
+{% endblock %}

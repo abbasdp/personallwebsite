@@ -1,0 +1,67 @@
+{% extends "admin_base.html" %}
+
+{% block title %}{{ 'ویرایش نوشته' if post else 'نوشته جدید' }} · پنل مدیریت{% endblock %}
+
+{% block content %}
+<div class="admin-head">
+  <h1 class="admin-title">{{ 'ویرایش نوشته' if post else 'نوشته جدید' }}</h1>
+  <a class="btn btn--ghost btn--sm" href="{{ url_for('admin_dashboard') }}">→ بازگشت</a>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="admin-form admin-card">
+  <label class="field">
+    <span>عنوان *</span>
+    <input type="text" name="title" value="{{ post.title if post else '' }}" required />
+  </label>
+
+  <div class="field-row">
+    <label class="field">
+      <span>تاریخ (میلادی، مثل ۲۰۲۶-۰۹-۱۹)</span>
+      <input type="date" name="date" value="{{ default_date }}" dir="ltr" />
+    </label>
+    {% if not post %}
+    <label class="field">
+      <span>نامک/آدرس (اختیاری)</span>
+      <input type="text" name="slug" placeholder="به‌صورت خودکار از عنوان ساخته می‌شود" dir="ltr" />
+    </label>
+    {% else %}
+    <label class="field">
+      <span>نامک/آدرس</span>
+      <input type="text" value="{{ post.slug }}" dir="ltr" readonly />
+    </label>
+    {% endif %}
+  </div>
+
+  <label class="field">
+    <span>خلاصه</span>
+    <textarea name="summary" rows="2">{{ post.summary if post else '' }}</textarea>
+  </label>
+
+  <label class="field">
+    <span>تگ‌ها (با ویرگول جدا کنید)</span>
+    <input type="text" name="tags" value="{{ post.tags if post else '' }}" placeholder="لینوکس، نرم‌افزار آزاد" />
+  </label>
+
+  <div class="field-row">
+    <label class="field">
+      <span>تصویر کاور (آپلود)</span>
+      <input type="file" name="cover_file" accept="image/*" />
+    </label>
+    <label class="field">
+      <span>یا آدرس تصویر کاور</span>
+      <input type="text" name="cover_url" value="{{ post.cover if post else '' }}" dir="ltr" placeholder="/static/media/..." />
+    </label>
+  </div>
+
+  <label class="field">
+    <span>متن نوشته (Markdown)</span>
+    <textarea name="body" rows="16" class="mono-input" placeholder="## عنوان بخش&#10;&#10;متن شما...">{{ post.body if post else '' }}</textarea>
+    <small class="admin-hint">از Markdown پشتیبانی می‌شود: ‎## تیتر، ‎**پررنگ**، لیست‌ها، ‎[لینک](https://…)، تصویر، و کدبلاک.</small>
+  </label>
+
+  <div class="admin-form__actions">
+    <button type="submit" class="btn btn--primary">ذخیره نوشته</button>
+    <a class="btn btn--ghost" href="{{ url_for('admin_dashboard') }}">انصراف</a>
+  </div>
+</form>
+{% endblock %}

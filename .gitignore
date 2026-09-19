@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+node_modules/
+.DS_Store
+
+# Runtime-generated content (created by the admin panel), not committed
+content/site.json
+static/media/uploads/

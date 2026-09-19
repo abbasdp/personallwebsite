@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}پنل مدیریت · {{ profile.name }}{% endblock %}</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preload" as="font" type="font/woff2" href="{{ url_for('static', filename='fonts/Vazirmatn.woff2') }}" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="{{ url_for('static', filename='fonts/JetBrainsMono.woff2') }}" crossorigin />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml" />
+</head>
+<body class="admin">
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="admin-bar">
+    <a class="nav__brand" href="{{ url_for('admin_dashboard') }}">
+      <span class="nav__logo">~/</span><span>پنل مدیریت</span>
+    </a>
+    <nav class="admin-bar__links">
+      {% if session.get('admin') %}
+      <a href="{{ url_for('admin_dashboard') }}">نوشته‌ها</a>
+      <a href="{{ url_for('admin_site') }}">محتوای سایت</a>
+      {% endif %}
+      <a href="{{ url_for('index') }}" target="_blank">نمای سایت ↗</a>
+      {% if session.get('admin') %}<a href="{{ url_for('admin_logout') }}">خروج</a>{% endif %}
+    </nav>
+  </header>
+
+  <main class="admin-wrap">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash flash--{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

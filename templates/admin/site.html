@@ -1,0 +1,92 @@
+{% extends "admin_base.html" %}
+
+{% block title %}محتوای سایت · پنل مدیریت{% endblock %}
+
+{% block content %}
+<div class="admin-head">
+  <h1 class="admin-title">محتوای سایت</h1>
+  <a class="btn btn--ghost btn--sm" href="{{ url_for('admin_dashboard') }}">→ نوشته‌ها</a>
+</div>
+
+<form method="post" class="admin-form admin-card">
+  <div class="field-row">
+    <label class="field"><span>نام</span><input type="text" name="name" value="{{ profile.name }}" /></label>
+    <label class="field"><span>شناسه (handle)</span><input type="text" name="handle" value="{{ profile.handle }}" dir="ltr" /></label>
+  </div>
+
+  <div class="field-row">
+    <label class="field"><span>عنوان/نقش</span><input type="text" name="role" value="{{ profile.role }}" /></label>
+    <label class="field"><span>موقعیت</span><input type="text" name="location" value="{{ profile.location }}" /></label>
+  </div>
+
+  <label class="field"><span>تگ‌لاین (زیرعنوان)</span><input type="text" name="tagline" value="{{ profile.tagline }}" /></label>
+  <label class="field"><span>درباره</span><textarea name="about" rows="4">{{ profile.about }}</textarea></label>
+
+  <fieldset class="admin-fieldset">
+    <legend>جامعه‌ها</legend>
+    <div id="communities">
+      {% for c in profile.communities %}
+      <div class="repeat-row">
+        <input type="text" name="community_label" value="{{ c.label }}" placeholder="نام جامعه" />
+        <input type="text" name="community_href" value="{{ c.href }}" dir="ltr" placeholder="https://…" />
+        <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="button" class="btn btn--ghost btn--sm" onclick="addCommunity()">+ افزودن جامعه</button>
+  </fieldset>
+
+  <fieldset class="admin-fieldset">
+    <legend>شبکه‌های اجتماعی</legend>
+    <div id="socials">
+      {% for s in profile.socials %}
+      <div class="repeat-row repeat-row--social">
+        <select name="social_icon">
+          {% for opt in icon_options %}<option value="{{ opt }}" {{ 'selected' if s.icon == opt else '' }}>{{ opt }}</option>{% endfor %}
+        </select>
+        <input type="text" name="social_label" value="{{ s.label }}" placeholder="برچسب" />
+        <input type="text" name="social_value" value="{{ s.value }}" dir="ltr" placeholder="@user" />
+        <input type="text" name="social_href" value="{{ s.href }}" dir="ltr" placeholder="https://…" />
+        <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="button" class="btn btn--ghost btn--sm" onclick="addSocial()">+ افزودن شبکه</button>
+  </fieldset>
+
+  <div class="admin-form__actions">
+    <button type="submit" class="btn btn--primary">ذخیره تغییرات</button>
+    <a class="btn btn--ghost" href="{{ url_for('index') }}" target="_blank">نمای سایت ↗</a>
+  </div>
+</form>
+
+<template id="tpl-community">
+  <div class="repeat-row">
+    <input type="text" name="community_label" placeholder="نام جامعه" />
+    <input type="text" name="community_href" dir="ltr" placeholder="https://…" />
+    <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+  </div>
+</template>
+<template id="tpl-social">
+  <div class="repeat-row repeat-row--social">
+    <select name="social_icon">
+      {% for opt in icon_options %}<option value="{{ opt }}">{{ opt }}</option>{% endfor %}
+    </select>
+    <input type="text" name="social_label" placeholder="برچسب" />
+    <input type="text" name="social_value" dir="ltr" placeholder="@user" />
+    <input type="text" name="social_href" dir="ltr" placeholder="https://…" />
+    <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+  </div>
+</template>
+
+<script>
+  function addCommunity() {
+    const t = document.getElementById('tpl-community');
+    document.getElementById('communities').appendChild(t.content.cloneNode(true));
+  }
+  function addSocial() {
+    const t = document.getElementById('tpl-social');
+    document.getElementById('socials').appendChild(t.content.cloneNode(true));
+  }
+</script>
+{% endblock %}
