@@ -143,6 +143,18 @@ def _parse_front_matter(text: str) -> tuple[dict, str]:
     return meta, body.strip()
 
 
+def body_looks_like_html(body: str) -> bool:
+    snippet = (body or "").lstrip()[:4000]
+    return snippet.startswith("<") and "</" in snippet
+
+
+def render_body(body: str) -> str:
+    """بدنه را به HTML تبدیل می‌کند؛ HTML ذخیره‌شده از ویرایشگر را دست نمی‌زند."""
+    if body_looks_like_html(body):
+        return body
+    return md.markdown(body or "", extensions=["fenced_code", "tables", "toc"])
+
+
 def _reading_time(body: str) -> str:
     words = len(re.findall(r"\S+", body))
     minutes = max(1, round(words / 200))
@@ -158,7 +170,7 @@ def _load_post(path: Path) -> dict:
     tags = [t.strip() for t in meta.get("tags", "").split("،") if t.strip()]
     if not tags:
         tags = [t.strip() for t in meta.get("tags", "").split(",") if t.strip()]
-    html = md.markdown(body, extensions=["fenced_code", "tables", "toc"])
+    html = render_body(body)
     return {
         "slug": path.stem,
         "title": meta.get("title", path.stem),
@@ -465,7 +477,11 @@ def admin_new():
         return _handle_post_form(existing_slug=None)
     today = date.today().isoformat()
     return render_template(
-        "admin/edit.html", profile=load_profile(), post=None, default_date=today
+        "admin/edit.html",
+        profile=load_profile(),
+        post=None,
+        default_date=today,
+        editor_html="",
     )
 
 
@@ -478,8 +494,29 @@ def admin_edit(slug):
     if not post:
         abort(404)
     return render_template(
-        "admin/edit.html", profile=load_profile(), post=post, default_date=post["date"]
+        "admin/edit.html",
+        profile=load_profile(),
+        post=post,
+        default_date=post["date"],
+        editor_html=render_body(post.get("body") or ""),
     )
+
+
+@app.route("/admin/upload", methods=["POST"])
+@login_required
+def admin_upload():
+    """آپلود تصویر از داخل ویرایشگر بصری."""
+    file_storage = request.files.get("file") or request.files.get("image")
+    if not file_storage or not file_storage.filename:
+        return jsonify({"error": "فایلی فرستاده نشد."}), 400
+    ext = Path(file_storage.filename).suffix.lower()
+    if ext not in ALLOWED_IMAGE_EXTS:
+        return jsonify({"error": "فقط تصویر مجاز است."}), 400
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    name = secure_filename(f"{secrets.token_hex(8)}{ext}") or f"img{ext}"
+    dest = UPLOAD_DIR / name
+    file_storage.save(dest)
+    return jsonify({"location": f"/static/media/uploads/{name}"})
 
 
 @app.route("/admin/delete/<slug>", methods=["POST"])

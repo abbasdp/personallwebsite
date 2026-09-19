@@ -54,9 +54,9 @@
   </div>
 
   <label class="field">
-    <span>متن نوشته (Markdown)</span>
-    <textarea name="body" rows="16" class="mono-input" placeholder="## عنوان بخش&#10;&#10;متن شما...">{{ post.body if post else '' }}</textarea>
-    <small class="admin-hint">از Markdown پشتیبانی می‌شود: ‎## تیتر، ‎**پررنگ**، لیست‌ها، ‎[لینک](https://…)، تصویر، و کدبلاک.</small>
+    <span>متن نوشته</span>
+    <textarea id="body-editor" name="body">{{ editor_html }}</textarea>
+    <small class="admin-hint">از نوار بالا نوع سطر را انتخاب کنید: پاراگراف، تیتر، لینک، تصویر، فهرست.</small>
   </label>
 
   <div class="admin-form__actions">
@@ -64,4 +64,49 @@
     <a class="btn btn--ghost" href="{{ url_for('admin_dashboard') }}">انصراف</a>
   </div>
 </form>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.4/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: "#body-editor",
+    language: "fa",
+    language_url: "https://cdn.jsdelivr.net/npm/tinymce-i18n@24.12.16/langs6/fa.js",
+    directionality: "rtl",
+    height: 520,
+    menubar: false,
+    branding: false,
+    promotion: false,
+    plugins: "lists link image autolink wordcount",
+    toolbar: "blocks | bold italic underline | link image | bullist numlist | blockquote | removeformat | undo redo",
+    block_formats: "پاراگراف=p; تیتر ۲=h2; تیتر ۳=h3; نقل‌قول=blockquote",
+    skin: "oxide-dark",
+    content_css: "dark",
+    content_style: "@font-face{font-family:Vazirmatn;src:url('/static/fonts/Vazirmatn.woff2') format('woff2');font-display:swap;}body{font-family:Vazirmatn,Tahoma,sans-serif;font-size:17px;line-height:1.9;direction:rtl;background:#121820;color:#e8eef5;}a{color:#7ec8a3;}img{max-width:100%;height:auto;}",
+    relative_urls: false,
+    convert_urls: false,
+    automatic_uploads: true,
+    images_upload_url: "{{ url_for('admin_upload') }}",
+    file_picker_types: "image",
+    file_picker_callback: function (callback, value, meta) {
+      if (meta.filetype !== "image") return;
+      var input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = function () {
+        var file = this.files[0];
+        var data = new FormData();
+        data.append("file", file);
+        fetch("{{ url_for('admin_upload') }}", { method: "POST", body: data })
+          .then(function (r) { return r.json(); })
+          .then(function (json) { callback(json.location); });
+      };
+      input.click();
+    }
+  });
+  document.querySelector(".admin-form").addEventListener("submit", function () {
+    if (window.tinymce) tinymce.triggerSave();
+  });
+</script>
 {% endblock %}

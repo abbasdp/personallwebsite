@@ -388,7 +388,8 @@ html[dir="rtl"] .meter__fill { margin-right: 0; }
 .admin-bar__links { display: flex; gap: 1.2rem; }
 .admin-bar__links a { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
 .admin-bar__links a:hover { color: var(--accent); }
-.admin-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.admin-wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.tox-tinymce { border-radius: 10px !important; border-color: var(--border) !important; }
 .admin-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
 .admin-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; }
 .admin-hint { color: var(--muted); font-size: 0.9rem; }
