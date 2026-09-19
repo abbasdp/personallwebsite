@@ -53,11 +53,12 @@
     </label>
   </div>
 
-  <label class="field">
+  <div class="field">
     <span>متن نوشته</span>
-    <textarea id="body-editor" name="body">{{ editor_html }}</textarea>
-    <small class="admin-hint">از نوار بالا نوع سطر را انتخاب کنید: پاراگراف، تیتر، لینک، تصویر، فهرست.</small>
-  </label>
+    <p class="admin-hint">روی <b>+</b> بزن و نوع بلوک را انتخاب کن: پاراگراف، تیتر، پیوند، تصویر، فهرست، نقل‌قول.</p>
+    <div id="editorjs" class="block-editor"></div>
+    <textarea id="body-editor" name="body" hidden></textarea>
+  </div>
 
   <div class="admin-form__actions">
     <button type="submit" class="btn btn--primary">ذخیره نوشته</button>
@@ -67,46 +68,78 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.4/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.30.7"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.8"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@2.11.7"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/list@1.9.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@2.7.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@1.4.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.9.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@1.4.0"></script>
 <script>
-  tinymce.init({
-    selector: "#body-editor",
-    language: "fa",
-    language_url: "https://cdn.jsdelivr.net/npm/tinymce-i18n@24.12.16/langs6/fa.js",
-    directionality: "rtl",
-    height: 520,
-    menubar: false,
-    branding: false,
-    promotion: false,
-    plugins: "lists link image autolink wordcount",
-    toolbar: "blocks | bold italic underline | link image | bullist numlist | blockquote | removeformat | undo redo",
-    block_formats: "پاراگراف=p; تیتر ۲=h2; تیتر ۳=h3; نقل‌قول=blockquote",
-    skin: "oxide-dark",
-    content_css: "dark",
-    content_style: "@font-face{font-family:Vazirmatn;src:url('/static/fonts/Vazirmatn.woff2') format('woff2');font-display:swap;}body{font-family:Vazirmatn,Tahoma,sans-serif;font-size:17px;line-height:1.9;direction:rtl;background:#121820;color:#e8eef5;}a{color:#7ec8a3;}img{max-width:100%;height:auto;}",
-    relative_urls: false,
-    convert_urls: false,
-    automatic_uploads: true,
-    images_upload_url: "{{ url_for('admin_upload') }}",
-    file_picker_types: "image",
-    file_picker_callback: function (callback, value, meta) {
-      if (meta.filetype !== "image") return;
-      var input = document.createElement("input");
-      input.type = "file";
-      input.accept = "image/*";
-      input.onchange = function () {
-        var file = this.files[0];
-        var data = new FormData();
-        data.append("file", file);
-        fetch("{{ url_for('admin_upload') }}", { method: "POST", body: data })
-          .then(function (r) { return r.json(); })
-          .then(function (json) { callback(json.location); });
-      };
-      input.click();
+  const initialData = {{ editor_data | tojson }};
+  const editor = new EditorJS({
+    holder: "editorjs",
+    autofocus: false,
+    placeholder: "اینجا بنویس؛ با + نوع بلوک را عوض کن",
+    data: initialData,
+    i18n: {
+      direction: "rtl",
+      messages: {
+        ui: {
+          blockTunes: { toggler: { "Click to tune": "تنظیم بلوک", "or drag to move": "یا بکش برای جابه‌جایی" } },
+          inlineToolbar: { converter: { "Convert to": "تبدیل به" } },
+          toolbar: { toolbox: { Add: "افزودن بلوک" } }
+        },
+        toolNames: {
+          Text: "پاراگراف",
+          Heading: "تیتر",
+          List: "فهرست",
+          Quote: "نقل‌قول",
+          Delimiter: "جداکننده",
+          Image: "تصویر",
+          Bold: "پررنگ",
+          Italic: "کج",
+          Link: "پیوند",
+          "Inline Code": "کد"
+        },
+        tools: {
+          link: { "Add a link": "افزودن پیوند" },
+          stub: { "The block can not be displayed correctly.": "این بلوک درست نمایش داده نمی‌شود." }
+        },
+        blockTunes: {
+          delete: { Delete: "حذف", "Click to delete": "برای حذف کلیک کن" },
+          moveUp: { "Move up": "انتقال به بالا" },
+          moveDown: { "Move down": "انتقال به پایین" }
+        }
+      }
+    },
+    tools: {
+      paragraph: { class: Paragraph, inlineToolbar: ["link", "bold", "italic"] },
+      header: { class: Header, inlineToolbar: ["link", "bold"], config: { levels: [2, 3], defaultLevel: 2, placeholder: "تیتر" } },
+      list: { class: List, inlineToolbar: true },
+      quote: { class: Quote, inlineToolbar: true, config: { quotePlaceholder: "نقل‌قول", captionPlaceholder: "منبع" } },
+      delimiter: Delimiter,
+      image: {
+        class: ImageTool,
+        config: {
+          endpoints: { byFile: "{{ url_for('admin_upload') }}" },
+          captionPlaceholder: "شرح تصویر"
+        }
+      }
     }
   });
-  document.querySelector(".admin-form").addEventListener("submit", function () {
-    if (window.tinymce) tinymce.triggerSave();
+
+  var form = document.querySelector(".admin-form");
+  var saving = false;
+  form.addEventListener("submit", function (event) {
+    if (saving) return;
+    event.preventDefault();
+    editor.save().then(function (output) {
+      document.getElementById("body-editor").value = JSON.stringify(output);
+      saving = true;
+      HTMLFormElement.prototype.submit.call(form);
+    });
   });
 </script>
 {% endblock %}

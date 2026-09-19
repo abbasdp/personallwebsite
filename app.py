@@ -9,11 +9,13 @@
 from __future__ import annotations
 
 import functools
+import html as html_lib
 import json
 import os
 import re
 import secrets
 from datetime import date, datetime
+from html.parser import HTMLParser
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -148,8 +150,172 @@ def body_looks_like_html(body: str) -> bool:
     return snippet.startswith("<") and "</" in snippet
 
 
+def parse_editor_data(body: str) -> dict | None:
+    text = (body or "").strip()
+    if not text.startswith("{"):
+        return None
+    try:
+        data = json.loads(text)
+    except ValueError:
+        return None
+    if isinstance(data, dict) and isinstance(data.get("blocks"), list):
+        return data
+    return None
+
+
+def editor_data_to_html(data: dict) -> str:
+    parts: list[str] = []
+    for block in data.get("blocks") or []:
+        kind = block.get("type")
+        payload = block.get("data") or {}
+        if kind == "paragraph":
+            parts.append(f"<p>{payload.get('text') or ''}</p>")
+        elif kind == "header":
+            level = payload.get("level") or 2
+            try:
+                level = min(max(int(level), 2), 4)
+            except (TypeError, ValueError):
+                level = 2
+            parts.append(f"<h{level}>{payload.get('text') or ''}</h{level}>")
+        elif kind == "list":
+            tag = "ol" if payload.get("style") == "ordered" else "ul"
+            items = []
+            for item in payload.get("items") or []:
+                if isinstance(item, dict):
+                    items.append(f"<li>{item.get('content') or ''}</li>")
+                else:
+                    items.append(f"<li>{item}</li>")
+            parts.append(f"<{tag}>{''.join(items)}</{tag}>")
+        elif kind == "quote":
+            caption = payload.get("caption") or ""
+            quote = payload.get("text") or ""
+            cap = f"<cite>{caption}</cite>" if caption else ""
+            parts.append(f"<blockquote><p>{quote}</p>{cap}</blockquote>")
+        elif kind == "delimiter":
+            parts.append("<hr>")
+        elif kind == "image":
+            url = (payload.get("file") or {}).get("url") or payload.get("url") or ""
+            cap = payload.get("caption") or ""
+            if not url:
+                continue
+            img = f'<img src="{html_lib.escape(url, quote=True)}" alt="">'
+            if cap:
+                parts.append(f"<figure>{img}<figcaption>{cap}</figcaption></figure>")
+            else:
+                parts.append(img)
+        elif kind == "code":
+            code = html_lib.escape(payload.get("code") or "")
+            parts.append(f"<pre><code>{code}</code></pre>")
+    return "\n".join(parts)
+
+
+class _BlockParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.blocks: list[dict] = []
+        self._tag = ""
+        self._buf: list[str] = []
+        self._list_items: list[str] = []
+        self._list_style = "unordered"
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag in {"p", "h1", "h2", "h3", "h4", "blockquote", "pre"}:
+            self._flush()
+            self._tag = tag
+            self._buf = []
+        elif tag in {"ul", "ol"}:
+            self._flush()
+            self._tag = tag
+            self._list_items = []
+            self._list_style = "ordered" if tag == "ol" else "unordered"
+        elif tag == "li":
+            self._buf = []
+        elif tag == "br" and self._tag:
+            self._buf.append("<br>")
+        elif tag == "img":
+            src = attrs.get("src") or ""
+            if src:
+                self.blocks.append({
+                    "type": "image",
+                    "data": {"file": {"url": src}, "caption": attrs.get("alt") or ""},
+                })
+        elif tag == "hr":
+            self._flush()
+            self.blocks.append({"type": "delimiter", "data": {}})
+        elif tag in {"strong", "b"}:
+            self._buf.append("<b>")
+        elif tag in {"em", "i"}:
+            self._buf.append("<i>")
+        elif tag == "a":
+            href = html_lib.escape(attrs.get("href") or "", quote=True)
+            self._buf.append(f'<a href="{href}">')
+
+    def handle_endtag(self, tag):
+        if tag in {"strong", "b"}:
+            self._buf.append("</b>")
+        elif tag in {"em", "i"}:
+            self._buf.append("</i>")
+        elif tag == "a":
+            self._buf.append("</a>")
+        elif tag == "li":
+            self._list_items.append("".join(self._buf).strip())
+            self._buf = []
+        elif tag in {"ul", "ol"}:
+            self.blocks.append({
+                "type": "list",
+                "data": {"style": self._list_style, "items": self._list_items},
+            })
+            self._tag = ""
+            self._list_items = []
+        elif tag == self._tag:
+            text = "".join(self._buf).strip()
+            if tag == "p" and text:
+                self.blocks.append({"type": "paragraph", "data": {"text": text}})
+            elif tag in {"h1", "h2", "h3", "h4"} and text:
+                level = int(tag[1])
+                self.blocks.append({"type": "header", "data": {"text": text, "level": min(max(level, 2), 3)}})
+            elif tag == "blockquote" and text:
+                self.blocks.append({"type": "quote", "data": {"text": text, "caption": ""}})
+            elif tag == "pre" and text:
+                self.blocks.append({"type": "code", "data": {"code": text}})
+            self._tag = ""
+            self._buf = []
+
+    def handle_data(self, data):
+        if self._tag:
+            self._buf.append(data)
+
+    def _flush(self):
+        if self._tag in {"p", "h1", "h2", "h3", "h4", "blockquote", "pre"}:
+            self.handle_endtag(self._tag)
+
+    def close(self):
+        self._flush()
+        super().close()
+
+
+def html_to_editor_data(html: str) -> dict:
+    parser = _BlockParser()
+    parser.feed(html or "")
+    parser.close()
+    blocks = parser.blocks or [{"type": "paragraph", "data": {"text": ""}}]
+    return {"time": 0, "blocks": blocks, "version": "2.30.7"}
+
+
+def body_to_editor_data(body: str) -> dict:
+    data = parse_editor_data(body)
+    if data:
+        return data
+    html = render_body(body)
+    return html_to_editor_data(html)
+
+
 def render_body(body: str) -> str:
-    """بدنه را به HTML تبدیل می‌کند؛ HTML ذخیره‌شده از ویرایشگر را دست نمی‌زند."""
+    """بدنه را به HTML تبدیل می‌کند (JSON بلاک‌ادیتور، HTML، یا Markdown)."""
+    data = parse_editor_data(body)
+    if data:
+        return editor_data_to_html(data)
     if body_looks_like_html(body):
         return body
     return md.markdown(body or "", extensions=["fenced_code", "tables", "toc"])
@@ -481,7 +647,7 @@ def admin_new():
         profile=load_profile(),
         post=None,
         default_date=today,
-        editor_html="",
+        editor_data=body_to_editor_data(""),
     )
 
 
@@ -498,7 +664,7 @@ def admin_edit(slug):
         profile=load_profile(),
         post=post,
         default_date=post["date"],
-        editor_html=render_body(post.get("body") or ""),
+        editor_data=body_to_editor_data(post.get("body") or ""),
     )
 
 
@@ -516,7 +682,8 @@ def admin_upload():
     name = secure_filename(f"{secrets.token_hex(8)}{ext}") or f"img{ext}"
     dest = UPLOAD_DIR / name
     file_storage.save(dest)
-    return jsonify({"location": f"/static/media/uploads/{name}"})
+    url = f"/static/media/uploads/{name}"
+    return jsonify({"success": 1, "file": {"url": url}, "location": url})
 
 
 @app.route("/admin/delete/<slug>", methods=["POST"])
