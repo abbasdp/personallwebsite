@@ -55,7 +55,15 @@
 
   <div class="field">
     <span>متن نوشته</span>
-    <p class="admin-hint">روی <b>+</b> بزن و نوع بلوک را انتخاب کن: پاراگراف، تیتر، پیوند، تصویر، فهرست، نقل‌قول.</p>
+    <p class="admin-hint">نوع بلوک را از نوار زیر انتخاب کن. برای پیوند، متن پاراگراف را انتخاب کن و از نوار کوچک «پیوند» را بزن.</p>
+    <div class="block-palette" role="toolbar" aria-label="افزودن بلوک">
+      <button type="button" data-block="paragraph">پاراگراف</button>
+      <button type="button" data-block="header">تیتر</button>
+      <button type="button" data-block="list">فهرست</button>
+      <button type="button" data-block="image">تصویر</button>
+      <button type="button" data-block="quote">نقل‌قول</button>
+      <button type="button" data-block="delimiter">خط جدا</button>
+    </div>
     <div id="editorjs" class="block-editor"></div>
     <textarea id="body-editor" name="body" hidden></textarea>
   </div>
@@ -128,6 +136,22 @@
         }
       }
     }
+  });
+
+  editor.isReady.then(function () {
+    document.querySelectorAll(".block-palette [data-block]").forEach(function (btn) {
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+        var type = btn.getAttribute("data-block");
+        if (type === "header") {
+          editor.blocks.insert("header", { text: "", level: 2 });
+        } else if (type === "list") {
+          editor.blocks.insert("list", { style: "unordered", items: [""] });
+        } else {
+          editor.blocks.insert(type);
+        }
+      });
+    });
   });
 
   var form = document.querySelector(".admin-form");
