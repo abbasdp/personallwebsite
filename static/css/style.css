@@ -408,18 +408,53 @@ html[dir="rtl"] .meter__fill { margin-right: 0; }
   line-height: 1.85;
 }
 .block-editor .ce-toolbar__plus,
-.block-editor .ce-toolbar__settings-btn {
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
+.block-editor .ce-toolbar__settings-btn,
+.block-editor .ce-toolbar__plus:hover,
+.block-editor .ce-toolbar__settings-btn:hover {
+  color: #0a0e14 !important;
+  background: #e6edf3 !important;
+  border: 1px solid #e6edf3 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  opacity: 1 !important;
+}
+.block-editor .ce-toolbar__plus svg,
+.block-editor .ce-toolbar__settings-btn svg,
+.block-editor .ce-toolbar__plus svg *,
+.block-editor .ce-toolbar__settings-btn svg * {
+  fill: #0a0e14 !important;
+  stroke: #0a0e14 !important;
+  color: #0a0e14 !important;
 }
 .block-editor .ce-popover,
-.block-editor .ce-inline-toolbar {
-  background: var(--surface);
-  border-color: var(--border);
-  color: var(--text);
+.block-editor .ce-inline-toolbar,
+.block-editor .ce-conversion-toolbar {
+  background: #1a2230 !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #e6edf3 !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
-.block-editor .ce-popover-item:hover { background: var(--bg-soft); }
+.block-editor .ce-popover-item,
+.block-editor .ce-popover-item__title,
+.block-editor .ce-inline-tool,
+.block-editor .ce-conversion-tool,
+.block-editor .ce-popover-item-icon,
+.block-editor .ce-popover-item__icon {
+  color: #e6edf3 !important;
+  fill: #e6edf3 !important;
+  opacity: 1 !important;
+}
+.block-editor .ce-popover-item svg,
+.block-editor .ce-inline-tool svg,
+.block-editor .ce-popover-item svg * {
+  fill: #e6edf3 !important;
+  stroke: #e6edf3 !important;
+}
+.block-editor .ce-popover-item:hover,
+.block-editor .ce-inline-tool:hover,
+.block-editor .ce-conversion-tool:hover {
+  background: rgba(52, 211, 153, 0.16) !important;
+  color: #34d399 !important;
+}
 .admin-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
 .admin-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; }
 .admin-hint { color: var(--muted); font-size: 0.9rem; }
