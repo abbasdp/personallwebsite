@@ -109,8 +109,14 @@ html[data-theme="light"] .bg-monument { color: var(--accent-3); opacity: 0.26; }
   background: color-mix(in srgb, var(--bg) 65%, transparent);
   border-bottom: 1px solid var(--border);
 }
-.nav__brand { display: flex; align-items: center; gap: 0.35rem; font-weight: 700; letter-spacing: -0.02em; }
-.nav__logo { font-family: "JetBrains Mono", monospace; color: var(--accent); }
+.nav__brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; letter-spacing: -0.02em; }
+.nav__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
 .nav__links { display: flex; gap: 1.4rem; }
 .nav__links a { color: var(--muted); font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
@@ -299,7 +305,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 .hero__title { letter-spacing: -0.01em; line-height: 1.35; }
 .section__title { letter-spacing: -0.005em; }
 /* Nav logo & the whoami terminal stay LTR */
-.nav__logo, .terminal__body, .terminal__title { direction: ltr; }
+.terminal__body, .terminal__title { direction: ltr; }
 .prompt { margin-right: 0; margin-left: 0.5rem; }
 
 /* --- Writings: post cards --- */
