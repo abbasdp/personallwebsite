@@ -65,7 +65,10 @@
       <button type="button" data-block="delimiter">خط جدا</button>
     </div>
     <div id="editorjs" class="block-editor"></div>
-    <textarea id="body-editor" name="body" hidden></textarea>
+    <noscript>
+      <p class="admin-hint">جاوااسکریپت در این مرورگر اجرا نمی‌شود. متن نوشته را در جعبه زیر بگذارید.</p>
+    </noscript>
+    <textarea id="body-editor" name="body" rows="18">{{ post.body if post else '' }}</textarea>
   </div>
 
   <div class="admin-form__actions">
@@ -76,94 +79,13 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.30.7"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.8"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@2.11.7"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/list@1.9.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@2.7.6"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@1.4.2"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.9.3"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@1.4.0"></script>
-<script>
-  const initialData = {{ editor_data | tojson }};
-  const editor = new EditorJS({
-    holder: "editorjs",
-    autofocus: false,
-    placeholder: "اینجا بنویس؛ با + نوع بلوک را عوض کن",
-    data: initialData,
-    i18n: {
-      direction: "rtl",
-      messages: {
-        ui: {
-          blockTunes: { toggler: { "Click to tune": "تنظیم بلوک", "or drag to move": "یا بکش برای جابه‌جایی" } },
-          inlineToolbar: { converter: { "Convert to": "تبدیل به" } },
-          toolbar: { toolbox: { Add: "افزودن بلوک" } }
-        },
-        toolNames: {
-          Text: "پاراگراف",
-          Heading: "تیتر",
-          List: "فهرست",
-          Quote: "نقل‌قول",
-          Delimiter: "جداکننده",
-          Image: "تصویر",
-          Bold: "پررنگ",
-          Italic: "کج",
-          Link: "پیوند",
-          "Inline Code": "کد"
-        },
-        tools: {
-          link: { "Add a link": "افزودن پیوند" },
-          stub: { "The block can not be displayed correctly.": "این بلوک درست نمایش داده نمی‌شود." }
-        },
-        blockTunes: {
-          delete: { Delete: "حذف", "Click to delete": "برای حذف کلیک کن" },
-          moveUp: { "Move up": "انتقال به بالا" },
-          moveDown: { "Move down": "انتقال به پایین" }
-        }
-      }
-    },
-    tools: {
-      paragraph: { class: Paragraph, inlineToolbar: ["link", "bold", "italic"] },
-      header: { class: Header, inlineToolbar: ["link", "bold"], config: { levels: [2, 3], defaultLevel: 2, placeholder: "تیتر" } },
-      list: { class: List, inlineToolbar: true },
-      quote: { class: Quote, inlineToolbar: true, config: { quotePlaceholder: "نقل‌قول", captionPlaceholder: "منبع" } },
-      delimiter: Delimiter,
-      image: {
-        class: ImageTool,
-        config: {
-          endpoints: { byFile: "{{ url_for('admin_upload') }}" },
-          captionPlaceholder: "شرح تصویر"
-        }
-      }
-    }
-  });
-
-  editor.isReady.then(function () {
-    document.querySelectorAll(".block-palette [data-block]").forEach(function (btn) {
-      btn.addEventListener("click", function (event) {
-        event.preventDefault();
-        var type = btn.getAttribute("data-block");
-        if (type === "header") {
-          editor.blocks.insert("header", { text: "", level: 2 });
-        } else if (type === "list") {
-          editor.blocks.insert("list", { style: "unordered", items: [""] });
-        } else {
-          editor.blocks.insert(type);
-        }
-      });
-    });
-  });
-
-  var form = document.querySelector(".admin-form");
-  var saving = false;
-  form.addEventListener("submit", function (event) {
-    if (saving) return;
-    event.preventDefault();
-    editor.save().then(function (output) {
-      document.getElementById("body-editor").value = JSON.stringify(output);
-      saving = true;
-      HTMLFormElement.prototype.submit.call(form);
-    });
-  });
-</script>
+<script type="application/json" id="editor-boot">{{ {"data": editor_data, "upload": url_for('admin_upload')} | tojson }}</script>
+<script src="{{ url_for('static', filename='js/vendor/editorjs.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/vendor/header.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/vendor/paragraph.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/vendor/list.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/vendor/quote.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/vendor/delimiter.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/vendor/image.umd.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/admin-editor.js') }}" defer></script>
 {% endblock %}

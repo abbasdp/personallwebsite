@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}اطلاعات مجوز جاوااسکریپت · {{ profile.name }}{% endblock %}
+
+{% block content %}
+<section class="section section--page">
+  <h1 class="section__title">اطلاعات مجوز جاوااسکریپت</h1>
+  <p class="about__text">این صفحه برای GNU LibreJS نوشته شده است. هر پرونده جاوااسکریپتی که این سایت می‌فرستد نرم‌افزار آزاد است و نشانی منبعش در جدول آمده است. خواندن نوشته‌ها به اجرای جاوااسکریپت وابسته نیست.</p>
+
+  <table id="jslicense-labels1" class="js-labels">
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/main.js') }}">main.js</a></td>
+      <td><a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU-GPL-3.0-or-later</a></td>
+      <td><a href="{{ url_for('static', filename='js/main.js') }}">main.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/admin-editor.js') }}">admin-editor.js</a></td>
+      <td><a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU-GPL-3.0-or-later</a></td>
+      <td><a href="{{ url_for('static', filename='js/admin-editor.js') }}">admin-editor.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/admin-site.js') }}">admin-site.js</a></td>
+      <td><a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU-GPL-3.0-or-later</a></td>
+      <td><a href="{{ url_for('static', filename='js/admin-site.js') }}">admin-site.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/umami.js') }}">umami.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/umami.src.ts') }}">umami.src.ts</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/editorjs.umd.js') }}">editorjs.umd.js</a></td>
+      <td><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache-2.0-only</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/editorjs.umd.js') }}">editorjs.umd.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/header.umd.js') }}">header.umd.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/header.umd.js') }}">header.umd.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/paragraph.umd.js') }}">paragraph.umd.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/paragraph.umd.js') }}">paragraph.umd.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/list.umd.js') }}">list.umd.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/list.umd.js') }}">list.umd.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/quote.umd.js') }}">quote.umd.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/quote.umd.js') }}">quote.umd.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/delimiter.umd.js') }}">delimiter.umd.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/delimiter.umd.js') }}">delimiter.umd.js</a></td>
+    </tr>
+    <tr>
+      <td><a href="{{ url_for('static', filename='js/vendor/image.umd.js') }}">image.umd.js</a></td>
+      <td><a href="http://www.jclark.com/xml/copying.txt">Expat</a></td>
+      <td><a href="{{ url_for('static', filename='js/vendor/image.umd.js') }}">image.umd.js</a></td>
+    </tr>
+  </table>
+
+  <p class="about__text">اسکریپت‌های خود سایت با GPL نسخه ۳ یا بعد منتشر می‌شوند. Editor.js با Apache-2.0 است و افزونه‌هایش و ردیاب Umami با مجوز Expat (همان MIT).</p>
+</section>
+{% endblock %}

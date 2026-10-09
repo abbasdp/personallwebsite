@@ -29,11 +29,11 @@
       <div class="repeat-row">
         <input type="text" name="community_label" value="{{ c.label }}" placeholder="نام جامعه" />
         <input type="text" name="community_href" value="{{ c.href }}" dir="ltr" placeholder="https://…" />
-        <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+        <button type="button" class="btn btn--danger btn--sm" data-remove-row>×</button>
       </div>
       {% endfor %}
     </div>
-    <button type="button" class="btn btn--ghost btn--sm" onclick="addCommunity()">+ افزودن جامعه</button>
+    <button type="button" class="btn btn--ghost btn--sm" data-add-community>+ افزودن جامعه</button>
   </fieldset>
 
   <fieldset class="admin-fieldset">
@@ -47,11 +47,11 @@
         <input type="text" name="social_label" value="{{ s.label }}" placeholder="برچسب" />
         <input type="text" name="social_value" value="{{ s.value }}" dir="ltr" placeholder="@user" />
         <input type="text" name="social_href" value="{{ s.href }}" dir="ltr" placeholder="https://…" />
-        <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+        <button type="button" class="btn btn--danger btn--sm" data-remove-row>×</button>
       </div>
       {% endfor %}
     </div>
-    <button type="button" class="btn btn--ghost btn--sm" onclick="addSocial()">+ افزودن شبکه</button>
+    <button type="button" class="btn btn--ghost btn--sm" data-add-social>+ افزودن شبکه</button>
   </fieldset>
 
   <div class="admin-form__actions">
@@ -64,7 +64,7 @@
   <div class="repeat-row">
     <input type="text" name="community_label" placeholder="نام جامعه" />
     <input type="text" name="community_href" dir="ltr" placeholder="https://…" />
-    <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+    <button type="button" class="btn btn--danger btn--sm" data-remove-row>×</button>
   </div>
 </template>
 <template id="tpl-social">
@@ -75,18 +75,11 @@
     <input type="text" name="social_label" placeholder="برچسب" />
     <input type="text" name="social_value" dir="ltr" placeholder="@user" />
     <input type="text" name="social_href" dir="ltr" placeholder="https://…" />
-    <button type="button" class="btn btn--danger btn--sm" onclick="this.parentElement.remove()">×</button>
+    <button type="button" class="btn btn--danger btn--sm" data-remove-row>×</button>
   </div>
 </template>
+{% endblock %}
 
-<script>
-  function addCommunity() {
-    const t = document.getElementById('tpl-community');
-    document.getElementById('communities').appendChild(t.content.cloneNode(true));
-  }
-  function addSocial() {
-    const t = document.getElementById('tpl-social');
-    document.getElementById('socials').appendChild(t.content.cloneNode(true));
-  }
-</script>
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/admin-site.js') }}" defer></script>
 {% endblock %}

@@ -1,3 +1,4 @@
 Flask==3.1.0
 Markdown==3.7
 jdatetime==5.0.0
+gunicorn==23.0.0

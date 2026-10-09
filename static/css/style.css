@@ -280,11 +280,20 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 .footer { max-width: var(--maxw); margin: 0 auto; padding: 2.5rem 1.5rem 3.5rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
 .footer .mono { color: var(--text); }
 .footer__muted { font-size: 0.85rem; margin-top: 0.3rem; opacity: 0.8; }
+.footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.footer a:hover { color: var(--accent); }
 
-/* Reveal animation */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal.is-visible { opacity: 1; transform: none; }
-.card.reveal, .social.reveal { transition-delay: calc(var(--i, 0) * 80ms); }
+/* Reveal animation: visible without JS; hidden only after our script marks <html class="js"> */
+html.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+html.js .reveal.is-visible { opacity: 1; transform: none; }
+html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0) * 80ms); }
+
+.js-labels {
+  width: 100%; border-collapse: collapse; margin: 1.6rem 0; direction: ltr; text-align: left;
+  font-size: 0.92rem; background: var(--surface); border-radius: 12px; overflow: hidden;
+}
+.js-labels td { border: 1px solid var(--border); padding: 0.7rem 0.85rem; vertical-align: top; }
+.js-labels a { color: var(--accent-2); word-break: break-all; }
 
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); } 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
 @keyframes blink { 50% { opacity: 0; } }
@@ -534,6 +543,10 @@ html[dir="rtl"] .meter__fill { margin-right: 0; }
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
 .field input[readonly] { opacity: 0.6; }
 .field textarea { resize: vertical; line-height: 1.8; }
+html.js #body-editor { display: none; }
+html:not(.js) .block-editor,
+html:not(.js) .block-palette { display: none; }
+html:not(.js) #body-editor { display: block; min-height: 24rem; }
 .mono-input { font-family: "JetBrains Mono", monospace !important; font-size: 0.88rem !important; }
 .admin-form__actions { display: flex; gap: 0.8rem; margin-top: 0.4rem; }
 

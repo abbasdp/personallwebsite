@@ -17,6 +17,7 @@ import secrets
 from datetime import date, datetime
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 import jdatetime
@@ -436,14 +437,32 @@ def login_required(view):
     return wrapped
 
 
+def _umami_settings() -> tuple[str, str]:
+    """شناسه سایت Umami و میزبان API. اسکریپت ردیاب از خود سایت سرو می‌شود."""
+    website_id = (os.environ.get("UMAMI_WEBSITE_ID") or "").strip()
+    if website_id in ("", "-"):
+        return "", ""
+    host = (os.environ.get("UMAMI_HOST") or "").strip()
+    src = (os.environ.get("UMAMI_SRC") or "").strip()
+    if not host and src not in ("", "-"):
+        parts = urlsplit(src)
+        if parts.scheme and parts.netloc:
+            host = f"{parts.scheme}://{parts.netloc}"
+    if not host:
+        host = "https://umami.sudoshz.ir"
+    return website_id, host
+
+
 @app.context_processor
 def inject_globals():
-    """در دسترس همه قالب‌ها: پایه آدرس canonical و تنظیمات Umami."""
+    """در دسترس همه قالب‌ها: پایه آدرس canonical، ساعت، و تنظیمات Umami."""
     base = request.url_root[:-1] if request else ""
+    website_id, host = _umami_settings()
     return {
         "canonical_base": base,
-        "umami_src": os.environ.get("UMAMI_SRC", ""),
-        "umami_website_id": os.environ.get("UMAMI_WEBSITE_ID", ""),
+        "umami_website_id": website_id,
+        "umami_host": host,
+        "clock_time": datetime.now(ZoneInfo("Asia/Tehran")).strftime("%H:%M:%S"),
     }
 
 
@@ -528,6 +547,18 @@ def healthz():
     return jsonify({"status": "ok"})
 
 
+@app.route("/javascript")
+def javascript_licenses():
+    """جدول برچسب مجوز جاوااسکریپت برای GNU LibreJS."""
+    profile = load_profile()
+    return render_template(
+        "javascript.html",
+        profile=profile,
+        year=to_persian_digits(datetime.now().year),
+        seo={"description": "مجوز و نشانی منبع جاوااسکریپت این سایت برای GNU LibreJS."},
+    )
+
+
 # --------------------------- SEO endpoints ---------------------------
 
 @app.route("/robots.txt")
@@ -549,6 +580,7 @@ def sitemap():
     urls = [
         {"loc": f"{base}/", "priority": "1.0"},
         {"loc": f"{base}/posts", "priority": "0.8"},
+        {"loc": f"{base}/javascript", "priority": "0.3"},
     ]
     for p in posts:
         urls.append({

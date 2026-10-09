@@ -5,9 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}پنل مدیریت · {{ profile.name }}{% endblock %}</title>
   <meta name="robots" content="noindex, nofollow" />
+  <script>
+  /* @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-3.0-or-later */
+  document.documentElement.classList.add("js");
+  /* @license-end */
+  </script>
   <link rel="preload" as="font" type="font/woff2" href="{{ url_for('static', filename='fonts/Vazirmatn.woff2') }}" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="{{ url_for('static', filename='fonts/JetBrainsMono.woff2') }}" crossorigin />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=block-palette-3" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=freejs-1" />
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}?v=2" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon.png') }}?v=2" />
 </head>
@@ -25,6 +30,7 @@
       {% endif %}
       <a href="{{ url_for('index') }}" target="_blank">نمای سایت ↗</a>
       {% if session.get('admin') %}<a href="{{ url_for('admin_logout') }}">خروج</a>{% endif %}
+      <a href="{{ url_for('javascript_licenses') }}" rel="jslicense" data-jslicense="1">مجوز جاوااسکریپت</a>
     </nav>
   </header>
 

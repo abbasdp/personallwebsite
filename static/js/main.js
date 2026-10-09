@@ -1,4 +1,13 @@
-// Theme toggle (persisted)
+/* @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-3.0-or-later */
+/**
+ * Copyright (C) 2026 عباس داورپناه
+ *
+ * Progressive enhancement for the public site. The pages remain readable
+ * if this file does not run.
+ */
+
+document.documentElement.classList.add("js");
+
 const root = document.documentElement;
 const saved = localStorage.getItem("theme");
 if (saved) root.setAttribute("data-theme", saved);
@@ -10,9 +19,10 @@ toggle?.addEventListener("click", () => {
   localStorage.setItem("theme", next);
 });
 
-// Typed "whoami" output
 const typedEl = document.getElementById("typed");
-const phrase = window.__WHOAMI__ || "Free Software enthusiast";
+const phrase =
+  root.getAttribute("data-whoami") ||
+  "برنامه‌نویس و ترویج‌دهنده فلسفه نرم‌افزار آزاد";
 if (typedEl) {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduce) {
@@ -27,7 +37,6 @@ if (typedEl) {
   }
 }
 
-// Scroll reveal + skill meter fill
 const revealables = document.querySelectorAll(".reveal");
 const io = new IntersectionObserver(
   (entries) => {
@@ -42,7 +51,6 @@ const io = new IntersectionObserver(
 );
 revealables.forEach((el) => io.observe(el));
 
-// Live clock from the backend (/api/now), then tick locally
 const clockTime = document.getElementById("clock-time");
 async function initClock() {
   if (!clockTime) return;
@@ -63,3 +71,4 @@ async function initClock() {
   }
 }
 initClock();
+/* @license-end */
