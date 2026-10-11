@@ -80,14 +80,6 @@
 <section class="section" id="about">
   <div class="section__head reveal"><div><h2 class="section__title">درباره</h2></div></div>
   <p class="about__text reveal">{{ profile.about }}</p>
-  {% if profile.communities %}
-  <div class="communities reveal">
-    <span class="communities__label">جامعه‌ها:</span>
-    {% for c in profile.communities %}
-    <a class="community" href="{{ c.href }}" target="_blank" rel="noopener">{{ c.label }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
 </section>
 
 <!-- Connect -->

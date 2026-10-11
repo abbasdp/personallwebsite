@@ -2,7 +2,7 @@
 /**
  * Copyright (C) 2026 عباس داورپناه
  *
- * Repeatable community and social rows on the site-content admin form.
+ * Repeatable social rows on the site-content admin form.
  */
 (function () {
   document.addEventListener("click", function (event) {
@@ -12,16 +12,6 @@
       var row = removeBtn.closest(".repeat-row");
       if (row) {
         row.remove();
-      }
-      return;
-    }
-
-    if (event.target.closest("[data-add-community]")) {
-      event.preventDefault();
-      var communityTpl = document.getElementById("tpl-community");
-      var communities = document.getElementById("communities");
-      if (communityTpl && communities) {
-        communities.appendChild(communityTpl.content.cloneNode(true));
       }
       return;
     }

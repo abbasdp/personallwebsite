@@ -23,20 +23,6 @@
   <label class="field"><span>درباره</span><textarea name="about" rows="4">{{ profile.about }}</textarea></label>
 
   <fieldset class="admin-fieldset">
-    <legend>جامعه‌ها</legend>
-    <div id="communities">
-      {% for c in profile.communities %}
-      <div class="repeat-row">
-        <input type="text" name="community_label" value="{{ c.label }}" placeholder="نام جامعه" />
-        <input type="text" name="community_href" value="{{ c.href }}" dir="ltr" placeholder="https://…" />
-        <button type="button" class="btn btn--danger btn--sm" data-remove-row>×</button>
-      </div>
-      {% endfor %}
-    </div>
-    <button type="button" class="btn btn--ghost btn--sm" data-add-community>+ افزودن جامعه</button>
-  </fieldset>
-
-  <fieldset class="admin-fieldset">
     <legend>شبکه‌های اجتماعی</legend>
     <div id="socials">
       {% for s in profile.socials %}
@@ -60,13 +46,6 @@
   </div>
 </form>
 
-<template id="tpl-community">
-  <div class="repeat-row">
-    <input type="text" name="community_label" placeholder="نام جامعه" />
-    <input type="text" name="community_href" dir="ltr" placeholder="https://…" />
-    <button type="button" class="btn btn--danger btn--sm" data-remove-row>×</button>
-  </div>
-</template>
 <template id="tpl-social">
   <div class="repeat-row repeat-row--social">
     <select name="social_icon">

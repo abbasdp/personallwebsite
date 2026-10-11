@@ -66,11 +66,6 @@ DEFAULT_PROFILE = {
     "timezone": "Asia/Tehran",
     "tagline": "اینجا جای نوشتن و خواندن است: تجربه، فلسفه و فرهنگ نرم‌افزار آزاد.",
     "about": "برنامه‌نویس و علاقه‌مند به تکنولوژی و جنبش آزادی نرم‌افزار",
-    "communities": [
-        {"label": "فینگرکدر", "href": "https://fingercoder.abbasdp.ir/"},
-        {"label": "شیرازلاگ", "href": "https://shirazlug.ir"},
-        {"label": "sudoshz", "href": "https://sudoshz.ir"},
-    ],
     "socials": [
         {"id": "mastodon", "label": "ماستودون", "value": "@abbas_dp@techhub.social",
          "href": "https://techhub.social/@abbas_dp", "icon": "mastodon"},
@@ -735,15 +730,7 @@ def admin_site():
     if request.method == "POST":
         for key in ("name", "handle", "role", "location", "tagline", "about"):
             profile[key] = (request.form.get(key) or "").strip()
-
-        communities = []
-        for label, href in zip(
-            request.form.getlist("community_label"),
-            request.form.getlist("community_href"),
-        ):
-            if label.strip():
-                communities.append({"label": label.strip(), "href": href.strip()})
-        profile["communities"] = communities
+        profile.pop("communities", None)
 
         socials = []
         for icon, label, value, href in zip(

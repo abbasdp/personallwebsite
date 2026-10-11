@@ -352,12 +352,6 @@ html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0
   .post-card--wide .post-card__cover { margin: -1.5rem -1.5rem 0.4rem; width: auto; max-width: none; aspect-ratio: 16 / 9; }
 }
 
-/* Communities */
-.communities { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1.2rem; }
-.communities__label { color: var(--muted); font-size: 0.9rem; }
-.community { font-size: 0.85rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); transition: transform 0.2s, border-color 0.2s, color 0.2s; }
-.community:hover { transform: translateY(-2px); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
-
 /* --- Article page --- */
 .article__cover { margin: 0 0 1.8rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
 .article__cover img { width: 100%; display: block; }
