@@ -115,5 +115,18 @@
     {% endfor %}
   </div>
 
+  {% if pgp_pubkey %}
+  <div class="pgp reveal" id="pgp">
+    <div class="pgp__bar">
+      <div>
+        <h3 class="pgp__title">کلید عمومی OpenPGP</h3>
+        <p class="pgp__fp mono" dir="ltr">{{ pgp_fingerprint }}</p>
+      </div>
+      <a class="btn btn--ghost btn--sm" href="{{ url_for('pgp_key') }}">دانلود abbasdp.asc</a>
+    </div>
+    <pre class="pgp__key" dir="ltr">{{ pgp_pubkey }}</pre>
+  </div>
+  {% endif %}
+
 </section>
 {% endblock %}

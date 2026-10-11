@@ -30,6 +30,7 @@ from flask import (
     redirect,
     render_template,
     request,
+    send_file,
     session,
     url_for,
 )
@@ -88,6 +89,8 @@ DEFAULT_PROFILE = {
 }
 
 SITE_JSON = BASE_DIR / "content" / "site.json"
+PGP_ASC = BASE_DIR / "static" / "abbasdp.asc"
+PGP_FINGERPRINT = "35A4 5081 4284 D496 F578  7C54 3ADE 104D A1AF BF4E"
 
 
 def load_profile() -> dict:
@@ -453,11 +456,16 @@ def inject_globals():
     """در دسترس همه قالب‌ها: پایه آدرس canonical، ساعت، و تنظیمات Umami."""
     base = request.url_root[:-1] if request else ""
     website_id, host = _umami_settings()
+    pgp_pubkey = ""
+    if PGP_ASC.exists():
+        pgp_pubkey = PGP_ASC.read_text(encoding="utf-8").strip()
     return {
         "canonical_base": base,
         "umami_website_id": website_id,
         "umami_host": host,
         "clock_time": datetime.now(ZoneInfo("Asia/Tehran")).strftime("%H:%M:%S"),
+        "pgp_pubkey": pgp_pubkey,
+        "pgp_fingerprint": PGP_FINGERPRINT,
     }
 
 
@@ -540,6 +548,18 @@ def api_now():
 @app.route("/healthz")
 def healthz():
     return jsonify({"status": "ok"})
+
+
+@app.route("/abbasdp.asc")
+def pgp_key():
+    if not PGP_ASC.exists():
+        abort(404)
+    return send_file(
+        PGP_ASC,
+        mimetype="application/pgp-keys",
+        as_attachment=False,
+        download_name="abbasdp.asc",
+    )
 
 
 @app.route("/javascript")

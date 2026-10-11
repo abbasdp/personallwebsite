@@ -267,6 +267,20 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 .social__arrow { width: 18px; height: 18px; margin-left: auto; color: var(--muted); opacity: 0; transform: translate(-4px, 4px); transition: 0.25s; }
 .social:hover .social__arrow { opacity: 1; transform: translate(0, 0); color: var(--accent); }
 
+.pgp {
+  margin-top: 1.4rem; padding: 1.2rem 1.3rem; border: 1px solid var(--border);
+  border-radius: 14px; background: var(--surface);
+}
+.pgp__bar { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+.pgp__title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35rem; }
+.pgp__fp { color: var(--muted); font-size: 0.82rem; margin: 0; letter-spacing: 0.02em; }
+.pgp__key {
+  margin: 0; padding: 1rem 1.1rem; overflow-x: auto;
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.78rem; line-height: 1.55;
+  color: var(--text); background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;
+  white-space: pre;
+}
+
 .funding {
   display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.6rem;
   padding: 0.8rem 1.3rem; border-radius: 999px; font-weight: 600;
