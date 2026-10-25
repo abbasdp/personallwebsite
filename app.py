@@ -34,9 +34,12 @@ from flask import (
     session,
     url_for,
 )
+from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+app.config["PREFERRED_URL_SCHEME"] = "https"
 
 # Never hardcode secrets. Both are read from the environment; if missing, a random
 # value is generated at startup so nothing sensitive is committed to the repo.
@@ -56,6 +59,23 @@ if not ADMIN_PASSWORD:
 
 BASE_DIR = Path(__file__).resolve().parent
 POSTS_DIR = BASE_DIR / "content" / "posts"
+CANONICAL_ORIGIN = os.environ.get("CANONICAL_ORIGIN", "https://abbasdp.ir").rstrip("/")
+# نامک‌های قدیمی Publii که با نامک فعلی یکی نیستند.
+LEGACY_POSTS = {
+    "fingercoder-chetor-shekl-gereft": "sheklgiri-fingercoder",
+}
+RESERVED_ROOT_SLUGS = {
+    "posts",
+    "admin",
+    "api",
+    "static",
+    "javascript",
+    "healthz",
+    "robots.txt",
+    "sitemap.xml",
+    "feed.xml",
+    "abbasdp.asc",
+}
 UPLOAD_DIR = BASE_DIR / "static" / "media" / "uploads"
 ALLOWED_IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 
@@ -451,10 +471,21 @@ def _umami_settings() -> tuple[str, str]:
     return website_id, host
 
 
+def _legacy_post_slug(slug: str) -> str | None:
+    """اگر نامک، نوشتهٔ فعلی یا نامک قدیمی باشد، نامک زنده را برمی‌گرداند."""
+    if not slug or slug in RESERVED_ROOT_SLUGS:
+        return None
+    target = LEGACY_POSTS.get(slug, slug)
+    path = POSTS_DIR / f"{target}.md"
+    if path.exists():
+        return target
+    return None
+
+
 @app.context_processor
 def inject_globals():
     """در دسترس همه قالب‌ها: پایه آدرس canonical، ساعت، و تنظیمات Umami."""
-    base = request.url_root[:-1] if request else ""
+    base = CANONICAL_ORIGIN
     website_id, host = _umami_settings()
     pgp_pubkey = ""
     if PGP_ASC.exists():
@@ -498,6 +529,9 @@ def posts_index():
 
 @app.route("/posts/<slug>")
 def post_detail(slug: str):
+    target = LEGACY_POSTS.get(slug)
+    if target and target != slug:
+        return redirect(f"{CANONICAL_ORIGIN}/posts/{target}", code=301)
     path = POSTS_DIR / f"{slug}.md"
     if not path.exists():
         abort(404)
@@ -515,6 +549,23 @@ def post_detail(slug: str):
         year=to_persian_digits(datetime.now().year),
         seo=seo,
     )
+
+
+@app.route("/me/abbas-davarpanah")
+@app.route("/me/abbas-davarpanah/")
+def legacy_about():
+    """صفحهٔ «درباره» در سایت قبلی Publii."""
+    return redirect(f"{CANONICAL_ORIGIN}/", code=301)
+
+
+@app.route("/<legacy>")
+@app.route("/<legacy>/")
+def legacy_post(legacy: str):
+    """مسیرهای تک‌قطعه‌ای سایت قبلی را به نوشتهٔ فعلی می‌فرستد."""
+    target = _legacy_post_slug(legacy)
+    if not target:
+        abort(404)
+    return redirect(f"{CANONICAL_ORIGIN}/posts/{target}", code=301)
 
 
 @app.errorhandler(404)
@@ -578,7 +629,7 @@ def javascript_licenses():
 
 @app.route("/robots.txt")
 def robots():
-    base = request.url_root[:-1]
+    base = CANONICAL_ORIGIN
     body = (
         "User-agent: *\n"
         "Allow: /\n"
@@ -590,12 +641,11 @@ def robots():
 
 @app.route("/sitemap.xml")
 def sitemap():
-    base = request.url_root[:-1]
+    base = CANONICAL_ORIGIN
     posts = load_posts()
     urls = [
         {"loc": f"{base}/", "priority": "1.0"},
         {"loc": f"{base}/posts", "priority": "0.8"},
-        {"loc": f"{base}/javascript", "priority": "0.3"},
     ]
     for p in posts:
         urls.append({
@@ -627,7 +677,7 @@ def _rss_escape(text: str) -> str:
 
 @app.route("/feed.xml")
 def feed():
-    base = request.url_root[:-1]
+    base = CANONICAL_ORIGIN
     profile = load_profile()
     posts = load_posts()
     items = []

@@ -62,7 +62,7 @@
   </div>
 
   {% if post.source %}
-  <p class="article__source reveal">منتشرشده در <a href="{{ post.source }}" target="_blank" rel="noopener">abbasdp.ir</a> · مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+  <p class="article__source reveal">منتشرشده در <a href="{{ canonical_base }}/posts/{{ post.slug }}">abbasdp.ir</a> · مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
   {% endif %}
 </article>
 {% endblock %}

@@ -4,7 +4,7 @@ date: 2026-02-06
 summary: Install party to set up DeltaChat servers, created several local test servers, and promoted it.
 tags: دلتاچت
 cover: /static/media/posts/20/install-party-table.jpg
-source: https://abbasdp.ir/install-party-deltachat/
+source: https://abbasdp.ir/posts/install-party-deltachat
 ---
 
 Install party to set up [#DeltaChat](<https://techhub.social/tags/DeltaChat>) servers, created several local test servers, and promoted it.

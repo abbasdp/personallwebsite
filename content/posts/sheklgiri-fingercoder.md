@@ -4,7 +4,7 @@ date: 2026-08-16
 summary: شکل گیری فینگرکدر نقطه شروع ماجراجویی های رویدادی و همایشی منه. راستش همه چیز از فعالیت های جامعه محور من با فینگرکدر شروع شد.
 tags: فینگرکدر، رویداد
 cover: /static/media/posts/17/first-session-cake.jpg
-source: https://abbasdp.ir/sheklgiri-fingercoder/
+source: https://abbasdp.ir/posts/sheklgiri-fingercoder
 ---
 
 شکل گیری [فینگرکدر](<https://fingercoder.abbasdp.ir/>) نقطه شروع ماجراجویی های رویدادی و همایشی منه. راستش همه چیز از فعالیت های جامعه محور من با فینگرکدر شروع شد. 
