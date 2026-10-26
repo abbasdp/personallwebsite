@@ -64,6 +64,10 @@ CANONICAL_ORIGIN = os.environ.get("CANONICAL_ORIGIN", "https://abbasdp.ir").rstr
 LEGACY_POSTS = {
     "fingercoder-chetor-shekl-gereft": "sheklgiri-fingercoder",
 }
+# نوشته‌هایی که از سایت قبلی عمداً حذف شده‌اند؛ مسیر قدیمی باید ۴۱۰ بدهد.
+GONE_SLUGS = {
+    "jmaah-nrmfzr-azd-shyrzlynwkhs",
+}
 RESERVED_ROOT_SLUGS = {
     "posts",
     "admin",
@@ -562,6 +566,12 @@ def legacy_about():
 @app.route("/<legacy>/")
 def legacy_post(legacy: str):
     """مسیرهای تک‌قطعه‌ای سایت قبلی را به نوشتهٔ فعلی می‌فرستد."""
+    if legacy in GONE_SLUGS:
+        return render_template(
+            "404.html",
+            profile=load_profile(),
+            year=to_persian_digits(datetime.now().year),
+        ), 410
     target = _legacy_post_slug(legacy)
     if not target:
         abort(404)
