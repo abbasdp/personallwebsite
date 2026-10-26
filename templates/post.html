@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ post.title }} · {{ profile.name }}{% endblock %}
+{% block title %}{{ post.title }} - عباس داورپناه{% endblock %}
 
 {% block og_extra %}
   <meta property="article:published_time" content="{{ seo.published }}" />
@@ -62,7 +62,7 @@
   </div>
 
   {% if post.source %}
-  <p class="article__source reveal">منتشرشده در <a href="{{ canonical_base }}/posts/{{ post.slug }}">abbasdp.ir</a> · مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+  <p class="article__source reveal">منتشرشده در <a href="{{ post.source }}">{% if 'abbasdp.ir' in post.source %}abbasdp.ir{% else %}{{ post.source | replace('https://', '') | replace('http://', '') }}{% endif %}</a> · مجوز <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fa" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
   {% endif %}
 </article>
 {% endblock %}
