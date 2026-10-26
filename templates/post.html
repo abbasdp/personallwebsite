@@ -19,7 +19,7 @@
       "description": {{ post.summary | tojson }},
       "datePublished": "{{ seo.published }}",
       "dateModified": "{{ seo.published }}",
-      "inLanguage": "fa-IR",
+      "inLanguage": "{{ 'en' if post.dir == 'ltr' else 'fa-IR' }}",
       "author": {"@type": "Person", "name": {{ profile.name | tojson }}},
       "publisher": {"@type": "Person", "name": {{ profile.name | tojson }}},
       "keywords": {{ (post.tags | join('، ')) | tojson }},
@@ -42,7 +42,7 @@
 {% block content %}
 <article class="section section--page article">
   <a class="back-link reveal" href="{{ url_for('posts_index') }}">→ بازگشت به نوشته‌ها</a>
-  <header class="article__head reveal">
+  <header class="article__head reveal"{% if post.dir == 'ltr' %} dir="ltr" lang="en"{% endif %}>
     <div class="post-card__meta">
       <span class="post-card__date">{{ post.date_fa }}</span>
       <span class="post-card__dot">·</span>
@@ -57,7 +57,7 @@
   <figure class="article__cover reveal"><img src="{{ post.cover }}" alt="{{ post.title }}" loading="lazy" /></figure>
   {% endif %}
 
-  <div class="prose reveal">
+  <div class="prose reveal"{% if post.dir == 'ltr' %} dir="ltr" lang="en"{% endif %}>
     {{ post.html | safe }}
   </div>
 

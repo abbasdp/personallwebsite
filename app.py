@@ -370,6 +370,7 @@ def _load_post(path: Path) -> dict:
         "reading_time": _reading_time(body),
         "cover": meta.get("cover", ""),
         "source": meta.get("source", ""),
+        "dir": meta.get("dir", "") if meta.get("dir") in ("ltr", "rtl") else "",
         "html": html,
     }
 
@@ -540,11 +541,13 @@ def post_detail(slug: str):
     if not path.exists():
         abort(404)
     post = _load_post(path)
+    english = post["dir"] == "ltr"
     seo = {
         "description": post["summary"] or post["title"],
         "type": "article",
         "image": post["cover"] or "",
         "published": post["date"].isoformat(),
+        "locale": "en_US" if english else "fa_IR",
     }
     return render_template(
         "post.html",

@@ -1,13 +1,15 @@
 ---
-title: اینترنت ایران دوباره به نفس‌نفس افتاده
+title: Iran's internet is struggling again
 date: 2026-10-27
-summary: ترافیک اینترنت ایران روی هر چهار اپراتور افت کرده؛ ما همین حالا داریم رله‌های دلتاچت را داخل ایران راه می‌اندازیم.
+dir: ltr
+summary: Traffic has dropped sharply on all four main Iranian operators. We are setting up Delta Chat relays inside Iran before the night only the domestic network is left.
 tags: دلتاچت
 cover: /static/media/posts/26/http-operators.jpg
 source: https://techhub.social/@abbas_dp/117509530429221486
 ---
 
-اینترنت ایران دوباره به نفس‌نفس افتاده. ترافیک روی هر چهار اپراتور اصلی، یعنی همراه اول، ایرانسل، مخابرات و رایتل، به‌شدت افت کرده و میانگین سرعت رسیده به حدود ۳.۳ مگابیت بر ثانیه. بعد از یه جهش حدود ۲۱ اکتبر، ترافیک همچنان پایین‌تر از سطح دو هفته قبل مونده.
+Iran's internet is struggling again.
+Traffic has dropped sharply on all four main operators, MCI, Irancell, TCI and Rightel, and average speed is down to about 3.3 Mbps. After a spike around 21 October, traffic has stayed below the level of the previous two weeks.
 
 ![نمودار درخواست‌های HTTP همراه اول، ایرانسل، مخابرات و رایتل در مقایسه با دو هفته قبل](/static/media/posts/26/http-operators.jpg)
 
@@ -17,13 +19,15 @@ source: https://techhub.social/@abbas_dp/117509530429221486
 
 ![حجم ترافیک اینترنت ایران از ۱۳ تا ۲۶ اکتبر](/static/media/posts/26/traffic-volume.jpg)
 
-این الگو رو قبلاً هم دیدیم: اول کند می‌شه، بعد سرویس‌ها یکی‌یکی از کار می‌افتن، و یه شب فقط شبکه داخلی می‌مونه.
+We have seen this pattern before: first it slows down, then services drop one by one, and one night only the domestic network is left.
 
-برای همین منتظر اون شب نمی‌مونیم. همین حالا داریم رله‌های دلتاچت رو داخل ایران راه می‌ندازیم تا ارتباط امن و رمزنگاری‌شده سرتاسری زنده بمونه، حتی اگه کشور از اینترنت جهانی قطع بشه. دلتاچت روی زیرساخت ایمیل کار می‌کنه، شماره تلفن نمی‌خواد و به هیچ شرکتی وابسته نیست. با رله‌هایی که داخل کشور کار می‌کنن، مردم می‌تونن وقتی همه‌چیز خاموش شد، از طریق شبکه داخلی با خانواده و جمع‌هاشون در ارتباط بمونن.
+So we are not waiting for that night.
+Right now we are setting up Delta Chat relays inside Iran, so that secure, end-to-end encrypted communication stays alive even if the country is cut off from the global internet. Delta Chat works over email infrastructure, needs no phone number and is not tied to one company.
+With relays running inside the country, people can keep talking to their families and communities over the domestic network when everything else goes dark.
 
-اگه ایرانی، همین امروز دلتاچت یا ArcaneChat رو نصب کن و برای آدم‌هایی که برات مهمن یه پیام آزمایشی بفرست.
+If you are in Iran, install Delta Chat or ArcaneChat today and send a test message to the people who matter.
 
-اگه می‌تونی توی راه‌اندازی یا پشتیبانی رله‌ها کمکمون کنی، بهمون پیام بده.
+If you can help us run or support relays, reach out.
 
 [https://chatmaill.ir](<https://chatmaill.ir>)
 [https://delta.sudoshz.ir](<https://delta.sudoshz.ir>)
