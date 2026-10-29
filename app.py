@@ -41,6 +41,37 @@ app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
 app.config["PREFERRED_URL_SCHEME"] = "https"
 
+# Custom hosts only — keep /healthz and *.paasta.app on HTTP for probes.
+_HTTPS_REDIRECT_HOSTS = frozenset({"abbasdp.ir", "www.abbasdp.ir"})
+
+
+@app.before_request
+def redirect_http_to_https():
+    """301 http://abbasdp.ir and www to the same HTTPS path and query."""
+    if request.path == "/healthz":
+        return None
+    host = (request.host or "").split(":", 1)[0].lower()
+    if host not in _HTTPS_REDIRECT_HOSTS:
+        return None
+    proto = (
+        request.headers.get("X-Forwarded-Proto", "")
+        .split(",", 1)[0]
+        .strip()
+        .lower()
+        or request.scheme
+    )
+    fwd_port = (
+        request.headers.get("X-Forwarded-Port", "")
+        .split(",", 1)[0]
+        .strip()
+    )
+    if fwd_port != "80" and (proto == "https" or request.is_secure):
+        return None
+    path = request.full_path
+    if path.endswith("?"):
+        path = path[:-1]
+    return redirect(f"https://{host}{path}", code=301)
+
 # Never hardcode secrets. Both are read from the environment; if missing, a random
 # value is generated at startup so nothing sensitive is committed to the repo.
 # Set SECRET_KEY and ADMIN_PASSWORD via environment/secret in any real deployment.
