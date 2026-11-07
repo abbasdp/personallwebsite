@@ -53,6 +53,19 @@
     <ul class="tags">{% for tag in post.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
   </header>
 
+  {% if post.fa %}
+  <details class="article-fa" dir="{{ 'ltr' if post.dir == 'ltr' else 'rtl' }}">
+    <summary class="article-fa__toggle">
+      <span lang="fa" dir="rtl">نمایش ترجمهٔ فارسی</span>
+      <span class="article-fa__hint" lang="en" dir="ltr">Persian</span>
+    </summary>
+    <div class="prose article-fa__body" lang="fa" dir="{{ post.fa.dir }}">
+      {% if post.fa.title %}<h2 class="article-fa__title">{{ post.fa.title }}</h2>{% endif %}
+      {{ post.fa.html | safe }}
+    </div>
+  </details>
+  {% endif %}
+
   {% if post.cover %}
   <figure class="article__cover reveal"><img src="{{ post.cover }}" alt="{{ post.title }}" loading="lazy" /></figure>
   {% endif %}

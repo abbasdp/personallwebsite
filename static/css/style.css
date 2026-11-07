@@ -381,6 +381,43 @@ html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0
 .article__title { font-size: clamp(1.7rem, 5vw, 2.6rem); font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; margin: 0.6rem 0; }
 .article__summary { color: var(--muted); font-size: 1.1rem; }
 
+.article-fa { margin: 0 0 1.3rem; }
+.article-fa__toggle {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.95rem;
+  list-style: none;
+}
+.article-fa__toggle::-webkit-details-marker { display: none; }
+.article-fa__toggle:focus { outline: none; }
+.article-fa__toggle:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
+.article-fa__toggle:hover { background: var(--surface-2); }
+.article-fa__toggle::after {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-inline-start: 0.2rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-0.12rem);
+  opacity: 0.75;
+}
+.article-fa[open] .article-fa__toggle { border-color: var(--accent); color: var(--accent); }
+.article-fa[open] .article-fa__toggle::after { transform: rotate(-135deg) translateY(0.05rem); }
+.article-fa__hint { color: var(--muted); font-weight: 600; font-size: 0.82rem; }
+.article-fa__hint::before { content: "·"; margin-inline: 0.15rem 0.35rem; }
+.article-fa__body { margin-top: 1rem; }
+.article-fa__title { margin-top: 0; }
+
 .prose { font-size: 1.08rem; color: var(--text); }
 .prose > * + * { margin-top: 1.15rem; }
 .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.2rem; letter-spacing: -0.01em; }

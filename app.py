@@ -4,6 +4,7 @@
 هسته اصلی آن، بخش «نوشته‌ها» است: مقاله‌ها به‌صورت فایل‌های Markdown در
 ``content/posts`` نگه‌داری می‌شوند و در زمان اجرا خوانده، تجزیه و رندر می‌شوند.
 افزودن یک نوشته جدید یعنی افزودن یک فایل ``.md`` تازه — همین.
+فایل اختیاری ``<slug>.fa.md`` ترجمهٔ همان نوشته است و صفحه، فهرست یا sitemap جدا ندارد.
 """
 
 from __future__ import annotations
@@ -381,6 +382,53 @@ def _reading_time(body: str) -> str:
     return f"{to_persian_digits(minutes)} دقیقه مطالعه"
 
 
+# ترجمهٔ اختیاری کنار همان نامک: content/posts/<slug>.fa.md
+# این فایل نوشتهٔ مستقل نیست و فقط داخل صفحهٔ نوشتهٔ اصلی نشان داده می‌شود.
+_COMPANION_SUFFIX = ".fa.md"
+
+
+def _is_companion_path(path: Path) -> bool:
+    return path.name.endswith(_COMPANION_SUFFIX)
+
+
+def _companion_path(primary: Path) -> Path:
+    return primary.with_name(f"{primary.stem}.fa.md")
+
+
+def _load_companion(path: Path) -> dict | None:
+    """ترجمهٔ فارسی موجود را می‌خواند. فایل خراب صفحهٔ انگلیسی را از کار نمی‌اندازد."""
+    if not path.is_file():
+        return None
+    try:
+        meta, body = _parse_front_matter(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError):
+        app.logger.warning("Skipping unreadable companion %s", path.name)
+        return None
+    direction = meta.get("dir", "")
+    if direction not in ("ltr", "rtl"):
+        direction = "rtl"
+    return {
+        "lang": "fa",
+        "title": meta.get("title", ""),
+        "summary": meta.get("summary", ""),
+        "dir": direction,
+        "html": render_body(body),
+    }
+
+
+def _primary_slug_for_companion(slug: str) -> str | None:
+    """اگر نامک، نام عمومی فایل ``.fa.md`` باشد نامک نوشتهٔ اصلی را برمی‌گرداند."""
+    if not slug.endswith(".fa"):
+        return None
+    primary = slug[: -len(".fa")]
+    if not primary or primary in RESERVED_ROOT_SLUGS:
+        return None
+    path = POSTS_DIR / f"{primary}.md"
+    if path.is_file() and not _is_companion_path(path):
+        return primary
+    return None
+
+
 def _load_post(path: Path) -> dict:
     meta, body = _parse_front_matter(path.read_text(encoding="utf-8"))
     try:
@@ -403,13 +451,21 @@ def _load_post(path: Path) -> dict:
         "source": meta.get("source", ""),
         "dir": meta.get("dir", "") if meta.get("dir") in ("ltr", "rtl") else "",
         "html": html,
+        "fa": None if _is_companion_path(path) else _load_companion(_companion_path(path)),
     }
 
 
-def load_posts() -> list[dict]:
+def _iter_primary_post_paths():
     if not POSTS_DIR.exists():
         return []
-    posts = [_load_post(p) for p in POSTS_DIR.glob("*.md")]
+    return [
+        p for p in POSTS_DIR.glob("*.md")
+        if p.is_file() and not _is_companion_path(p)
+    ]
+
+
+def load_posts() -> list[dict]:
+    posts = [_load_post(p) for p in _iter_primary_post_paths()]
     posts.sort(key=lambda p: p["date"], reverse=True)
     return posts
 
@@ -417,7 +473,7 @@ def load_posts() -> list[dict]:
 def read_post_raw(slug: str) -> dict | None:
     """خواندن فایل خام یک نوشته (front-matter + متن) برای فرم ویرایش."""
     path = POSTS_DIR / f"{slug}.md"
-    if not path.exists():
+    if not path.is_file() or _is_companion_path(path):
         return None
     meta, body = _parse_front_matter(path.read_text(encoding="utf-8"))
     return {
@@ -513,9 +569,22 @@ def _legacy_post_slug(slug: str) -> str | None:
         return None
     target = LEGACY_POSTS.get(slug, slug)
     path = POSTS_DIR / f"{target}.md"
-    if path.exists():
+    if _is_companion_path(path):
+        return _primary_slug_for_companion(target)
+    if path.is_file():
         return target
     return None
+
+
+def _redirect_companion_slug(slug: str):
+    """نامک ``.fa`` صفحهٔ جدا نیست؛ به نوشتهٔ اصلی با نشانی canonical می‌رود."""
+    primary = _primary_slug_for_companion(slug)
+    if not primary:
+        return None
+    dest = f"{CANONICAL_ORIGIN}/posts/{primary}"
+    if request.query_string:
+        dest += "?" + request.query_string.decode("utf-8", "replace")
+    return redirect(dest, code=301)
 
 
 @app.context_processor
@@ -568,8 +637,11 @@ def post_detail(slug: str):
     target = LEGACY_POSTS.get(slug)
     if target and target != slug:
         return redirect(f"{CANONICAL_ORIGIN}/posts/{target}", code=301)
+    companion_redirect = _redirect_companion_slug(slug)
+    if companion_redirect is not None:
+        return companion_redirect
     path = POSTS_DIR / f"{slug}.md"
-    if not path.exists():
+    if not path.is_file() or _is_companion_path(path):
         abort(404)
     post = _load_post(path)
     english = post["dir"] == "ltr"
@@ -621,7 +693,7 @@ def not_found(_):
 def api_posts():
     posts = load_posts()
     return jsonify([
-        {k: v for k, v in p.items() if k != "html"} | {"date": p["date"].isoformat()}
+        {k: v for k, v in p.items() if k not in {"html", "fa"}} | {"date": p["date"].isoformat()}
         for p in posts
     ])
 
