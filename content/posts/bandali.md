@@ -54,3 +54,7 @@ source: https://abbasdp.ir/posts/bandali
 من واقعا خوشحالم که برنامه **گفتمان نرم‌افزار آزاد**  رو با امین بندعلی شروع کردیم. 
 
 ####  ویدیوی ارائه من و امین بندعلی
+
+<div class="post__iframe">
+<iframe loading="lazy" title="گفتمان نرم‌افزار آزاد - امین بندعلی" src="https://tubedu.org/videos/embed/nudTkw32nKN6kjpwkrmoUV" allow="fullscreen" allowfullscreen></iframe>
+</div>

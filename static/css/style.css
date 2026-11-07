@@ -291,7 +291,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 .funding .icon { width: 18px; height: 18px; color: var(--accent-3); }
 
 /* Footer */
-.footer { max-width: var(--maxw); margin: 0 auto; padding: 2.5rem 1.5rem 3.5rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
+.footer { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; padding: 2.5rem 1.5rem 3.5rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted); background: var(--bg); }
 .footer .mono { color: var(--text); }
 .footer__muted { font-size: 0.85rem; margin-top: 0.3rem; opacity: 0.8; }
 .footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
@@ -336,8 +336,8 @@ html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0
 .posts--list { grid-template-columns: 1fr; }
 .post-card {
   display: flex; flex-direction: column; gap: 0.55rem; padding: 1.5rem;
-  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
-  position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s, background 0.3s;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-soft);
+  position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s, border-color 0.3s, background 0.3s;
 }
 .post-card::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
@@ -345,7 +345,7 @@ html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.3s;
 }
-.post-card:hover { transform: translateY(-4px); border-color: transparent; background: var(--surface-2); }
+.post-card:hover { transform: translateY(-4px); border-color: transparent; background: color-mix(in srgb, var(--bg-soft) 88%, var(--text)); }
 .post-card:hover::before { opacity: 1; }
 .post-card__meta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--muted); font-family: var(--font-body); }
 .post-card__date { color: var(--accent-2); }
@@ -358,20 +358,20 @@ html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0
 .post-card__cover { margin: -1.5rem -1.5rem 0.4rem; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-2); }
 .post-card__cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .post-card:hover .post-card__cover img { transform: scale(1.05); }
-.post-card--wide { flex-direction: row; gap: 1.3rem; align-items: stretch; }
+.post-card--wide { flex-direction: row; gap: 1.3rem; align-items: center; }
 .post-card--wide .post-card__cover {
-  margin-block: -1.5rem;
-  margin-inline: 0;
-  margin-inline-start: -1.5rem;
-  width: 34%;
-  max-width: 260px;
-  aspect-ratio: auto;
+  margin: 0;
+  width: min(38%, 320px);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  align-self: center;
   flex-shrink: 0;
+  border-radius: 12px;
 }
 .post-card--wide .post-card__body { display: flex; flex-direction: column; gap: 0.55rem; flex: 1; min-width: 0; }
 @media (max-width: 640px) {
-  .post-card--wide { flex-direction: column; }
-  .post-card--wide .post-card__cover { margin: -1.5rem -1.5rem 0.4rem; width: auto; max-width: none; aspect-ratio: 16 / 9; }
+  .post-card--wide { flex-direction: column; align-items: stretch; }
+  .post-card--wide .post-card__cover { margin: -1.5rem -1.5rem 0.4rem; width: auto; max-width: none; aspect-ratio: 16 / 9; align-self: stretch; border-radius: 0; }
 }
 
 /* --- Article page --- */
@@ -384,7 +384,9 @@ html.js .card.reveal, html.js .social.reveal { transition-delay: calc(var(--i, 0
 .article__source a { color: var(--accent); }
 .back-link { display: inline-block; color: var(--muted); font-weight: 600; margin-bottom: 1.4rem; transition: color 0.2s; }
 .back-link:hover { color: var(--accent); }
-.article { max-width: 760px; }
+.article { position: relative; z-index: 1; max-width: 760px; background: var(--bg); }
+.post__iframe { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.2rem 0 0; }
+.post__iframe iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 12px; }
 .article__head { padding-bottom: 1.4rem; margin-bottom: 1.8rem; border-bottom: 1px solid var(--border); }
 .article__title { font-size: clamp(1.7rem, 5vw, 2.6rem); font-weight: 800; line-height: 1.45; letter-spacing: -0.01em; margin: 0.6rem 0; }
 .article__summary { color: var(--muted); font-size: 1.1rem; }

@@ -249,6 +249,11 @@ class ShippedContentTests(unittest.TestCase):
         self.assertEqual(http.headers["Location"], "https://abbasdp.ir/posts/whoami")
         probe = self.client.get("/healthz", base_url="http://abbasdp.ir")
         self.assertEqual(probe.status_code, 200)
+        bandali = self.client.get("/posts/bandali").get_data(as_text=True)
+        self.assertIn("https://tubedu.org/videos/embed/nudTkw32nKN6kjpwkrmoUV", bandali)
+        self.assertIn("ویدیوی ارائه من و امین بندعلی", bandali)
+        install = self.client.get("/posts/install-party-deltachat").get_data(as_text=True)
+        self.assertIn('dir="ltr" lang="en"', install)
 
 
 if __name__ == "__main__":
