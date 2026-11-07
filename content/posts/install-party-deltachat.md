@@ -1,6 +1,7 @@
 ---
 title: Install party to set up DeltaChat servers
 date: 2026-02-06
+dir: ltr
 summary: Install party to set up DeltaChat servers, created several local test servers, and promoted it.
 tags: دلتاچت
 cover: /static/media/posts/20/install-party-table.jpg

@@ -152,6 +152,14 @@ FIXTURE-ORPHAN-BODY. Must not be listed.
             self.assertNotIn("FIXTURE-ORPHAN-TITLE", page)
             self.assertIn("FIXTURE-EN-TITLE", page)
 
+        beta_card = listing.split('href="/posts/fixture-beta"', 1)[1][:700]
+        alpha_card = listing.split('href="/posts/fixture-alpha"', 1)[1][:500]
+        self.assertIn('class="post-card__title" dir="ltr" lang="en"', beta_card)
+        self.assertIn('class="post-card__summary" dir="ltr" lang="en"', beta_card)
+        self.assertNotIn('dir="ltr"', alpha_card)
+        self.assertIn('dir="ltr" lang="en"', home.split('href="/posts/fixture-beta"', 1)[1][:700])
+        self.assertNotIn('dir="ltr"', home.split('href="/posts/fixture-alpha"', 1)[1][:500])
+
         sitemap = self.client.get("/sitemap.xml")
         self.assertEqual(sitemap.status_code, 200)
         root = ET.fromstring(sitemap.get_data(as_text=True))
@@ -204,6 +212,11 @@ class ShippedContentTests(unittest.TestCase):
             sorted(f"https://abbasdp.ir/posts/{post['slug']}" for post in posts),
         )
         self.assertTrue(all(not loc.endswith(".fa") for loc in locs))
+        listing = self.client.get("/posts").get_data(as_text=True)
+        english_card = listing.split('href="/posts/deltachat-relay-iran-internet"', 1)[1][:800]
+        persian_card = listing.split('href="/posts/whoami"', 1)[1][:500]
+        self.assertIn('class="post-card__title" dir="ltr" lang="en"', english_card)
+        self.assertNotIn('dir="ltr"', persian_card)
 
         for post in posts:
             res = self.client.get(f"/posts/{post['slug']}")
@@ -214,6 +227,8 @@ class ShippedContentTests(unittest.TestCase):
                 html,
             )
             self.assertIn(post["title"], html)
+            if post["dir"] == "ltr":
+                self.assertIn('dir="ltr" lang="en"', html)
             companion = blog.POSTS_DIR / f"{post['slug']}.fa.md"
             if companion.is_file():
                 self.assertIn("نمایش ترجمهٔ فارسی", html)

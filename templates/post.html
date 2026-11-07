@@ -43,7 +43,7 @@
 <article class="section section--page article">
   <a class="back-link reveal" href="{{ url_for('posts_index') }}">→ بازگشت به نوشته‌ها</a>
   <header class="article__head reveal"{% if post.dir == 'ltr' %} dir="ltr" lang="en"{% endif %}>
-    <div class="post-card__meta">
+    <div class="post-card__meta" dir="rtl" lang="fa">
       <span class="post-card__date">{{ post.date_fa }}</span>
       <span class="post-card__dot">·</span>
       <span>{{ post.reading_time }}</span>
